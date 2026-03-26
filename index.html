@@ -110,7 +110,6 @@ input:focus, select:focus { border-color: var(--accent-border); }
 </div>
 
 <div id="app">
-  <!-- Left -->
   <div class="panel panel-left">
     <div>
       <label class="label">Ubicación</label>
@@ -144,9 +143,20 @@ input:focus, select:focus { border-color: var(--accent-border); }
       <div class="info" style="margin-top:2px;display:none" id="midi-help">Activa IAC (Mac) o loopMIDI (Win)</div>
     </div>
     <div class="stats" id="data-stats" style="display:none"><div id="stat-hours"></div><div id="stat-compressed"></div></div>
-  </div>
+    
+    <div style="margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px;">
+      <label class="label">Exportar Onda</label>
+      <select id="export-source-select" style="margin-bottom: 4px;">
+        <option value="temperature">Temperatura</option>
+        <option value="wind">Viento</option>
+      </select>
+      <div class="row">
+        <button class="btn" id="export-wav-btn" style="flex:1; font-size: 9px; padding: 4px 2px;">⬇ Wavetable</button>
+        <button class="btn" id="export-json-btn" style="flex:1; font-size: 9px; padding: 4px 2px;">⬇ LFO Data</button>
+      </div>
+    </div>
+    </div>
 
-  <!-- Center -->
   <div class="panel panel-center">
     <div class="row-center">
       <button class="btn" id="play-btn" disabled style="width:30px;padding:4px 0;font-size:10px">▶</button>
@@ -189,7 +199,6 @@ input:focus, select:focus { border-color: var(--accent-border); }
     <div id="midi-monitor" style="display:none"></div>
   </div>
 
-  <!-- Right -->
   <div class="panel panel-right">
     <label class="label" style="letter-spacing:1.5px">Mapeos MIDI</label>
     <div id="mappings-area" style="flex:1;overflow-y:auto"></div>
@@ -383,6 +392,107 @@ function renderMappings(){
     area.appendChild(sec);
   });
 }
+
+// ==========================================
+// MÓDULO DE EXPORTACIÓN (Wavetable & LFO)
+// ==========================================
+
+// Función para re-escalar el array a exactamente N samples (ej. 2048 para wavetables)
+function interpolateArray(data, targetLength) {
+  const result = new Float32Array(targetLength);
+  const step = (data.length - 1) / (targetLength - 1);
+  for (let i = 0; i < targetLength; i++) {
+    const index = i * step;
+    const lower = Math.floor(index);
+    const upper = Math.ceil(index);
+    const weight = index - lower;
+    if (upper >= data.length) result[i] = data[data.length - 1];
+    else result[i] = data[lower] * (1 - weight) + data[upper] * weight;
+  }
+  return result;
+}
+
+// Crea la cabecera RIFF de un archivo .WAV a 32-bit float
+function createFloat32Wav(samples) {
+  const buffer = new ArrayBuffer(44 + samples.length * 4);
+  const view = new DataView(buffer);
+  const writeString = (offset, str) => { for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i)); };
+  
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + samples.length * 4, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);   // Tamaño del sub-chunk fmt
+  view.setUint16(20, 3, true);    // Formato (3 = IEEE Float)
+  view.setUint16(22, 1, true);    // Canales (1 = Mono)
+  view.setUint32(24, 44100, true); // Sample Rate
+  view.setUint32(28, 44100 * 4, true); // Byte Rate
+  view.setUint16(32, 4, true);    // Block Align
+  view.setUint16(34, 32, true);   // Bits per sample
+  writeString(36, 'data');
+  view.setUint32(40, samples.length * 4, true);
+  
+  let offset = 44;
+  for (let i = 0; i < samples.length; i++, offset += 4) {
+    view.setFloat32(offset, samples[i], true); // true = Little Endian
+  }
+  return new Blob([buffer], { type: 'audio/wav' });
+}
+
+function exportData(format) {
+  if (!STATE.data || STATE.data.length === 0) {
+    showErr("Descarga los datos primero");
+    return;
+  }
+  
+  const sourceKey = document.getElementById('export-source-select').value;
+  const srcConfig = STATE.sources[sourceKey];
+  const rawValues = STATE.data.map(d => d[sourceKey]).filter(v => v !== null);
+  
+  if (rawValues.length === 0) return;
+  
+  // Usamos los rangos visuales actuales para normalizar
+  const min = srcConfig.viewMin;
+  const max = srcConfig.viewMax;
+  const range = max - min || 1;
+  
+  if (format === 'wav') {
+    // Para el WAV, normalizamos de -1.0 a +1.0 (Bipolar)
+    const bipolar = rawValues.map(v => {
+      let norm = (v - min) / range;
+      return Math.max(-1, Math.min(1, (norm * 2) - 1));
+    });
+    const wavetableSamples = interpolateArray(bipolar, 2048);
+    const blob = createFloat32Wav(wavetableSamples);
+    triggerDownload(blob, `NatureMIDI_${STATE.city.split(',')[0]}_${sourceKey}_WT.wav`);
+  } 
+  else if (format === 'json') {
+    // Para el LFO (JSON), normalizamos de 0.0 a 1.0 (Unipolar)
+    const unipolar = rawValues.map(v => Math.max(0, Math.min(1, (v - min) / range)));
+    const blob = new Blob([JSON.stringify(unipolar, null, 2)], { type: 'application/json' });
+    triggerDownload(blob, `NatureMIDI_${STATE.city.split(',')[0]}_${sourceKey}_LFO.json`);
+  }
+}
+
+function triggerDownload(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Event Listeners para los botones
+document.getElementById('export-wav-btn').addEventListener('click', () => exportData('wav'));
+document.getElementById('export-json-btn').addEventListener('click', () => exportData('json'));
+
+// ==========================================
+// FIN MÓDULO EXPORTACIÓN
+// ==========================================
+
 renderMappings();
 </script>
 </body>
