@@ -70,7 +70,7 @@ input:focus, select:focus { border-color: var(--accent-border); }
 #progress-fill { height: 100%; background: var(--accent); border-radius: 1px; transition: width 0.08s linear; width: 0%; }
 .speed-btn { min-width: 24px; font-size: 8px; text-align: center; padding: 2px 2px; }
 .speed-btn.active { background: rgba(154,138,255,0.12); color: var(--accent); border-color: rgba(154,138,255,0.25); }
-.chart-wrap { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.chart-wrap { flex: 1; min-height: 80px; max-height: 45vh; display: flex; flex-direction: column; }
 .chart-header { font-size: 9px; margin-bottom: 1px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 .chart-canvas-wrap { flex: 1; min-height: 0; position: relative; }
 .chart-canvas-wrap canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -258,7 +258,7 @@ async function fetchData(){
     const url=`https://api.open-meteo.com/v1/forecast?latitude=${STATE.lat}&longitude=${STATE.lon}&hourly=${params.join(',')}&start_date=${$('#date-start').value}&end_date=${$('#date-end').value}&timezone=auto`;
     const r=await fetch(url);const j=await r.json();if(j.error)throw new Error(j.reason||'Error de API');
     STATE.data=j.hourly.time.map((t,i)=>({time:t,index:i,temperature:j.hourly.temperature_2m?.[i]??null,wind:j.hourly.wind_speed_10m?.[i]??null}));
-    ['temperature','wind'].forEach(k=>{if(STATE.sources[k].active&&STATE.sources[k].autoRange){const v=STATE.data.map(r=>r[k]).filter(v=>v!==null);if(v.length){const mn=Math.floor(Math.min(...v)),mx=Math.ceil(Math.max(...v));STATE.sources[k].inMin=mn;STATE.sources[k].inMax=mx;STATE.sources[k].viewMin=mn;STATE.sources[k].viewMax=mx}}});
+    ['temperature','wind'].forEach(k=>{if(STATE.sources[k].active){const v=STATE.data.map(r=>r[k]).filter(v=>v!==null);if(v.length){const mn=Math.min(...v),mx=Math.max(...v);const pad=Math.max(1,(mx-mn)*0.1);const fMin=Math.floor(mn-pad),fMax=Math.ceil(mx+pad);STATE.sources[k].viewMin=fMin;STATE.sources[k].viewMax=fMax;if(STATE.sources[k].autoRange){STATE.sources[k].inMin=fMin;STATE.sources[k].inMax=fMax}}}});
     STATE.playheadIndex=0;STATE.playing=false;clearInterval(STATE.playInterval);
     renderCharts();renderMappings();updatePlayUI();
     $('#play-btn').disabled=false;$('#stop-btn').disabled=false;$('#empty-state').style.display='none';
