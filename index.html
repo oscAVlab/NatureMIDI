@@ -8,299 +8,100 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg: #0E0D11;
-  --bg2: #16151C;
-  --border: #1E1D24;
-  --border2: #2A2930;
-  --text: #E2E0D8;
-  --text2: #7A7980;
-  --text3: #5A5960;
-  --text4: #3A3940;
-  --accent: #9A8AFF;
-  --accent-bg: rgba(154,138,255,0.08);
-  --accent-border: rgba(154,138,255,0.19);
-  --temp: #E8593C;
-  --wind: #5DCAA5;
-  --danger: #E8593C;
+  --bg: #0E0D11; --bg2: #16151C; --border: #1E1D24; --border2: #2A2930;
+  --text: #E2E0D8; --text2: #7A7980; --text3: #5A5960; --text4: #3A3940;
+  --accent: #9A8AFF; --accent-bg: rgba(154,138,255,0.08); --accent-border: rgba(154,138,255,0.19);
+  --temp: #E8593C; --wind: #5DCAA5; --danger: #E8593C;
 }
-html, body { height: 100%; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
-  font-size: 13px;
-  overflow: hidden;
-}
-/* Layout */
+html, body { height: 100%; overflow: hidden; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', 'Helvetica Neue', sans-serif; font-size: 12px; }
 #header {
-  border-bottom: 1px solid var(--border);
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 53px;
+  border-bottom: 1px solid var(--border); padding: 6px 16px;
+  display: flex; align-items: center; justify-content: space-between; height: 36px;
 }
-#header h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: var(--accent);
-}
-#header .phase {
-  font-size: 10px;
-  color: var(--text3);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-left: 10px;
-}
-#header .midi-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--text2);
-}
-#header .midi-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-}
-#app {
-  display: grid;
-  grid-template-columns: 260px 1fr 280px;
-  height: calc(100vh - 53px);
-}
-.panel {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  overflow-y: auto;
-}
+#header h1 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 2px; color: var(--accent); }
+#header .phase { font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-left: 8px; }
+#header .midi-status { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text2); }
+#header .midi-dot { width: 5px; height: 5px; border-radius: 50%; }
+#app { display: grid; grid-template-columns: 210px 1fr 240px; height: calc(100vh - 36px); }
+.panel { padding: 8px; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; }
+.panel::-webkit-scrollbar { width: 3px; }
+.panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 .panel-left { border-right: 1px solid var(--border); }
-.panel-right { border-left: 1px solid var(--border); }
-.panel-center { gap: 12px; }
-
-/* Components */
-.label {
-  display: block;
-  font-size: 10px;
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
+.panel-right { border-left: 1px solid var(--border); gap: 4px; }
+.panel-center { gap: 4px; }
+.label { display: block; font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; font-weight: 500; }
 input[type="text"], input[type="number"], input[type="date"], select {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  padding: 6px 8px;
-  color: var(--text);
-  font-size: 12px;
-  outline: none;
-  font-family: inherit;
-  width: 100%;
+  background: var(--bg2); border: 1px solid var(--border2); border-radius: 3px;
+  padding: 3px 5px; color: var(--text); font-size: 10px; outline: none; font-family: inherit; width: 100%;
 }
 input[type="number"] { -moz-appearance: textfield; }
 input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 input:focus, select:focus { border-color: var(--accent-border); }
 .btn {
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  border-radius: 6px;
-  padding: 8px 16px;
-  color: var(--accent);
-  font-size: 12px;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 4px;
+  padding: 4px 10px; color: var(--accent); font-size: 10px; cursor: pointer;
+  font-family: inherit; font-weight: 500; letter-spacing: 0.5px;
 }
 .btn:hover { background: rgba(154,138,255,0.14); }
 .btn:disabled { opacity: 0.4; cursor: default; }
 .btn-sm {
-  background: transparent;
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  padding: 4px 8px;
-  color: var(--text2);
-  font-size: 11px;
-  cursor: pointer;
-  font-family: inherit;
+  background: transparent; border: 1px solid var(--border2); border-radius: 3px;
+  padding: 2px 5px; color: var(--text2); font-size: 9px; cursor: pointer; font-family: inherit;
 }
 .btn-sm:hover { border-color: var(--text3); }
-.row { display: flex; gap: 4px; }
-.row-center { display: flex; align-items: center; gap: 8px; }
-
-/* Source toggle */
+.row { display: flex; gap: 3px; }
+.row-center { display: flex; align-items: center; gap: 4px; }
 .source-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 10px;
-  margin-bottom: 4px;
-  border-radius: 6px;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  transition: background 0.15s, border-color 0.15s;
+  display: flex; align-items: center; gap: 5px; padding: 4px 6px; margin-bottom: 2px;
+  border-radius: 3px; cursor: pointer; border: 1px solid var(--border); font-size: 10px;
 }
 .source-toggle.active { background: var(--bg2); }
-.source-toggle .dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--text4);
-  transition: background 0.15s;
-}
+.source-toggle .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text4); }
 .source-toggle.active .dot { background: var(--source-color); }
-.source-toggle .name { color: var(--text3); transition: color 0.15s; }
+.source-toggle .name { color: var(--text3); }
 .source-toggle.active .name { color: var(--text); }
-.source-toggle .unit { font-size: 10px; color: var(--text3); margin-left: auto; }
-
-/* Search results */
-.search-results {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  margin-top: 4px;
-  overflow: hidden;
-}
-.search-result {
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 12px;
-  border-bottom: 1px solid var(--border);
-  color: #B0AFA8;
-}
+.source-toggle .unit { font-size: 8px; color: var(--text3); margin-left: auto; }
+.search-results { background: var(--bg2); border: 1px solid var(--border2); border-radius: 3px; margin-top: 2px; overflow: hidden; position: relative; z-index: 10; }
+.search-result { padding: 3px 6px; cursor: pointer; font-size: 10px; border-bottom: 1px solid var(--border); color: #B0AFA8; }
 .search-result:hover { background: var(--border); }
 .search-result:last-child { border-bottom: none; }
-
-/* Playback bar */
-#progress-bar {
-  height: 3px;
-  background: var(--border);
-  border-radius: 2px;
-  cursor: pointer;
-  position: relative;
-}
-#progress-fill {
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  transition: width 0.08s linear;
-  width: 0%;
-}
-.speed-btn {
-  min-width: 32px;
-  font-size: 10px;
-  text-align: center;
-  padding: 3px 4px;
-}
-.speed-btn.active {
-  background: rgba(154,138,255,0.12);
-  color: var(--accent);
-  border-color: rgba(154,138,255,0.25);
-}
-
-/* Chart containers */
-.chart-wrap {
-  flex: 1;
-  min-height: 130px;
-  position: relative;
-}
-.chart-header {
-  font-size: 11px;
-  margin-bottom: 4px;
-  display: flex;
-  justify-content: space-between;
-}
-.chart-canvas { width: 100%; height: calc(100% - 20px); }
-
-/* Empty state */
-.empty-state {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text4);
-  font-size: 14px;
-  font-family: 'Cormorant Garamond', serif;
-}
-
-/* MIDI monitor */
-#midi-monitor {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--border);
-  padding-top: 8px;
-}
-.midi-tag {
-  font-size: 10px;
-  padding: 3px 8px;
-  background: var(--bg2);
-  border-radius: 4px;
-  color: var(--text2);
-}
+#progress-bar { height: 2px; background: var(--border); border-radius: 1px; cursor: pointer; flex-shrink: 0; }
+#progress-fill { height: 100%; background: var(--accent); border-radius: 1px; transition: width 0.08s linear; width: 0%; }
+.speed-btn { min-width: 24px; font-size: 8px; text-align: center; padding: 2px 2px; }
+.speed-btn.active { background: rgba(154,138,255,0.12); color: var(--accent); border-color: rgba(154,138,255,0.25); }
+.chart-wrap { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.chart-header { font-size: 9px; margin-bottom: 1px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.chart-canvas-wrap { flex: 1; min-height: 0; position: relative; }
+.chart-canvas-wrap canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.empty-state { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--text4); font-size: 13px; font-family: 'Cormorant Garamond', serif; }
+#midi-monitor { display: flex; gap: 3px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 3px; flex-shrink: 0; }
+.midi-tag { font-size: 8px; padding: 1px 5px; background: var(--bg2); border-radius: 2px; color: var(--text2); }
 .midi-tag .val { color: var(--accent); font-weight: 500; }
 .midi-tag .raw { color: var(--text4); }
-
-/* Mapping card */
-.mapping-card {
-  background: var(--bg2);
-  border-radius: 6px;
-  padding: 8px 10px;
-  margin-bottom: 6px;
-  border: 1px solid var(--border2);
-  transition: opacity 0.15s;
-}
+.mapping-card { background: var(--bg2); border-radius: 3px; padding: 5px 6px; margin-bottom: 3px; border: 1px solid var(--border2); }
 .mapping-card.disabled { opacity: 0.5; border-color: #1A191F; }
 .mapping-toggle {
-  width: 14px; height: 14px;
-  border-radius: 3px;
-  border: 1px solid var(--text4);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  flex-shrink: 0;
+  width: 11px; height: 11px; border-radius: 2px; border: 1px solid var(--text4);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 6px; flex-shrink: 0;
 }
-.mapping-toggle.on {
-  background: rgba(var(--sc-rgb), 0.19);
-  border-color: var(--source-color);
-  color: var(--source-color);
-}
-.scale-grid {
-  display: flex;
-  gap: 2px;
-  flex-wrap: wrap;
-  margin-top: 3px;
-}
-.scale-btn {
-  min-width: 26px;
-  font-size: 9px;
-  padding: 2px 0;
-  text-align: center;
-}
-.scale-btn.active {
-  background: rgba(var(--sc-rgb), 0.15);
-  color: var(--source-color);
-  border-color: rgba(var(--sc-rgb), 0.3);
-}
-
-/* Info text */
-.info { font-size: 11px; color: var(--text3); }
-.info-danger { font-size: 11px; color: var(--danger); padding: 6px 8px; background: #1C1418; border-radius: 4px; }
-.stats { font-size: 11px; color: var(--text3); border-top: 1px solid var(--border); padding-top: 12px; }
+.mapping-toggle.on { border-color: var(--source-color); color: var(--source-color); }
+.scale-grid { display: flex; gap: 1px; flex-wrap: wrap; margin-top: 2px; }
+.scale-btn { min-width: 20px; font-size: 8px; padding: 1px 0; text-align: center; }
+.scale-btn.active { color: var(--source-color); border-color: rgba(var(--sc-rgb), 0.3); }
+.info { font-size: 9px; color: var(--text3); }
+.info-danger { font-size: 9px; color: var(--danger); padding: 3px 5px; background: #1C1418; border-radius: 3px; }
+.stats { font-size: 9px; color: var(--text3); border-top: 1px solid var(--border); padding-top: 4px; }
+.zoom-controls { display: flex; gap: 1px; margin-left: 4px; }
+.zoom-btn { padding: 0 3px; font-size: 10px; line-height: 14px; min-width: 16px; text-align: center; }
 </style>
 </head>
 <body>
 
 <div id="header">
-  <div style="display:flex;align-items:baseline;gap:10px">
-    <h1>NatureMIDI</h1>
-    <span class="phase">Phase 1</span>
+  <div style="display:flex;align-items:baseline;gap:8px">
+    <h1>NatureMIDI</h1><span class="phase">Phase 1</span>
   </div>
   <div class="midi-status">
     <div class="midi-dot" id="midi-dot"></div>
@@ -309,703 +110,279 @@ input:focus, select:focus { border-color: var(--accent-border); }
 </div>
 
 <div id="app">
-  <!-- Left Panel -->
+  <!-- Left -->
   <div class="panel panel-left">
     <div>
       <label class="label">Ubicación</label>
       <div class="row">
         <input type="text" id="city-input" value="Quito" placeholder="Buscar ciudad...">
-        <button class="btn-sm" id="city-search-btn" style="flex-shrink:0;width:32px">→</button>
+        <button class="btn-sm" id="city-search-btn" style="flex-shrink:0;width:24px">→</button>
       </div>
       <div id="search-results"></div>
-      <div class="info" style="margin-top:4px" id="location-info">Quito (-0.18, -78.47)</div>
+      <div class="info" style="margin-top:2px" id="location-info">Quito (-0.18, -78.47)</div>
     </div>
-
     <div>
       <label class="label">Rango de fechas</label>
       <div class="row">
-        <input type="date" id="date-start">
-        <input type="date" id="date-end">
+        <input type="date" id="date-start"><input type="date" id="date-end">
       </div>
     </div>
-
     <button class="btn" id="fetch-btn">Obtener datos</button>
     <div id="error-box" style="display:none"></div>
-
     <div>
-      <label class="label">Fuentes activas</label>
+      <label class="label">Fuentes</label>
       <div class="source-toggle active" data-source="temperature" style="--source-color:var(--temp)">
-        <div class="dot"></div>
-        <span class="name">Temperatura</span>
-        <span class="unit">°C</span>
+        <div class="dot"></div><span class="name">Temperatura</span><span class="unit">°C</span>
       </div>
       <div class="source-toggle active" data-source="wind" style="--source-color:var(--wind)">
-        <div class="dot"></div>
-        <span class="name">Viento</span>
-        <span class="unit">km/h</span>
+        <div class="dot"></div><span class="name">Viento</span><span class="unit">km/h</span>
       </div>
     </div>
-
     <div>
       <label class="label">MIDI output</label>
       <select id="midi-output-select"><option value="">Sin puertos MIDI</option></select>
-      <div class="info" style="margin-top:4px;display:none" id="midi-help">Activa IAC (Mac) o loopMIDI (Win)</div>
+      <div class="info" style="margin-top:2px;display:none" id="midi-help">Activa IAC (Mac) o loopMIDI (Win)</div>
     </div>
-
-    <div class="stats" id="data-stats" style="display:none">
-      <div id="stat-hours"></div>
-      <div id="stat-compressed"></div>
-    </div>
+    <div class="stats" id="data-stats" style="display:none"><div id="stat-hours"></div><div id="stat-compressed"></div></div>
   </div>
 
-  <!-- Center Panel -->
+  <!-- Center -->
   <div class="panel panel-center">
     <div class="row-center">
-      <button class="btn" id="play-btn" disabled style="width:44px;padding:8px 0">▶</button>
-      <button class="btn-sm" id="stop-btn" disabled>■</button>
-      <div class="row" style="margin-left:8px" id="speed-btns"></div>
-      <div style="margin-left:auto;font-size:11px;color:var(--text3)" id="playback-info">—</div>
+      <button class="btn" id="play-btn" disabled style="width:30px;padding:4px 0;font-size:10px">▶</button>
+      <button class="btn-sm" id="stop-btn" disabled style="font-size:9px">■</button>
+      <div class="row" style="margin-left:2px" id="speed-btns"></div>
+      <div style="margin-left:auto;font-size:9px;color:var(--text3)" id="playback-info">—</div>
     </div>
-
     <div id="progress-bar"><div id="progress-fill"></div></div>
-
-    <div id="charts-area" style="flex:1;display:flex;flex-direction:column;gap:8px">
+    <div id="charts-area" style="flex:1;display:flex;flex-direction:column;gap:2px;min-height:0">
       <div class="empty-state" id="empty-state">Selecciona ubicación y rango, luego "Obtener datos"</div>
       <div class="chart-wrap" id="chart-temp-wrap" style="display:none">
         <div class="chart-header">
           <span style="color:var(--temp)">Temperatura</span>
-          <span style="color:var(--text3)" id="temp-val">—</span>
+          <div style="display:flex;align-items:center">
+            <span style="color:var(--text3)" id="temp-val">—</span>
+            <div class="zoom-controls">
+              <button class="btn-sm zoom-btn" data-source="temperature" data-dir="in">+</button>
+              <button class="btn-sm zoom-btn" data-source="temperature" data-dir="out">−</button>
+              <button class="btn-sm zoom-btn" data-source="temperature" data-dir="fit" style="font-size:7px">fit</button>
+            </div>
+          </div>
         </div>
-        <canvas id="chart-temp" class="chart-canvas"></canvas>
+        <div class="chart-canvas-wrap"><canvas id="chart-temp"></canvas></div>
       </div>
       <div class="chart-wrap" id="chart-wind-wrap" style="display:none">
         <div class="chart-header">
           <span style="color:var(--wind)">Viento</span>
-          <span style="color:var(--text3)" id="wind-val">—</span>
+          <div style="display:flex;align-items:center">
+            <span style="color:var(--text3)" id="wind-val">—</span>
+            <div class="zoom-controls">
+              <button class="btn-sm zoom-btn" data-source="wind" data-dir="in">+</button>
+              <button class="btn-sm zoom-btn" data-source="wind" data-dir="out">−</button>
+              <button class="btn-sm zoom-btn" data-source="wind" data-dir="fit" style="font-size:7px">fit</button>
+            </div>
+          </div>
         </div>
-        <canvas id="chart-wind" class="chart-canvas"></canvas>
+        <div class="chart-canvas-wrap"><canvas id="chart-wind"></canvas></div>
       </div>
     </div>
-
     <div id="midi-monitor" style="display:none"></div>
   </div>
 
-  <!-- Right Panel -->
+  <!-- Right -->
   <div class="panel panel-right">
-    <label class="label" style="font-size:12px;letter-spacing:1.5px">Mapeos MIDI</label>
-    <div id="mappings-area"></div>
-    <button class="btn-sm" id="send-current-btn" style="display:none;width:100%;padding:8px;color:var(--accent);border-color:var(--accent-border)">Enviar punto actual</button>
+    <label class="label" style="letter-spacing:1.5px">Mapeos MIDI</label>
+    <div id="mappings-area" style="flex:1;overflow-y:auto"></div>
+    <button class="btn-sm" id="send-current-btn" style="display:none;width:100%;padding:4px;color:var(--accent);border-color:var(--accent-border)">Enviar punto actual</button>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <script>
-// ─── State ───
 const STATE = {
-  city: 'Quito',
-  lat: -0.1807,
-  lon: -78.4678,
-  data: null,
-  playing: false,
-  playbackSpeed: 4,
-  playheadIndex: 0,
-  midiAccess: null,
-  midiOutputId: '',
+  city:'Quito', lat:-0.1807, lon:-78.4678, data:null, playing:false, playbackSpeed:4,
+  playheadIndex:0, midiAccess:null, midiOutputId:'',
   sources: {
-    temperature: {
-      active: true,
-      inMin: -10, inMax: 45,
-      autoRange: true,
-      label: 'Temperatura', unit: '°C', param: 'temperature_2m',
-      color: '#E8593C', colorRGB: '232,89,60',
-      mappings: [{ id: 1, cc: 1, channel: 1, multiplier: 1, outMin: 0, outMax: 127, enabled: true }]
-    },
-    wind: {
-      active: true,
-      inMin: 0, inMax: 120,
-      autoRange: true,
-      label: 'Viento', unit: 'km/h', param: 'wind_speed_10m',
-      color: '#5DCAA5', colorRGB: '93,202,165',
-      mappings: [{ id: 2, cc: 11, channel: 1, multiplier: 1, outMin: 0, outMax: 127, enabled: true }]
-    }
+    temperature: { active:true, inMin:-10, inMax:45, viewMin:-10, viewMax:45, autoRange:true,
+      label:'Temperatura', unit:'°C', param:'temperature_2m', color:'#E8593C', colorRGB:'232,89,60',
+      mappings:[{id:1,cc:1,channel:1,multiplier:1,outMin:0,outMax:127,enabled:true}] },
+    wind: { active:true, inMin:0, inMax:120, viewMin:0, viewMax:120, autoRange:true,
+      label:'Viento', unit:'km/h', param:'wind_speed_10m', color:'#5DCAA5', colorRGB:'93,202,165',
+      mappings:[{id:2,cc:11,channel:1,multiplier:1,outMin:0,outMax:127,enabled:true}] }
   },
-  lastSent: {},
-  charts: {},
-  playInterval: null,
-  nextMappingId: 3
+  lastSent:{}, charts:{}, playInterval:null, nextMappingId:3
 };
+const SPEEDS=[0.5,1,2,4,8,16,32,64], MULTIPLIERS=[1,2,3,4,5,6,7,8,9,10,11,12];
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 
-const SPEEDS = [0.5, 1, 2, 4, 8, 16, 32, 64];
-const MULTIPLIERS = [1,2,3,4,5,6,7,8,9,10,11,12];
+const today=new Date(), weekAgo=new Date(today); weekAgo.setDate(weekAgo.getDate()-7);
+$('#date-start').value=fmt(weekAgo); $('#date-end').value=fmt(today);
+function fmt(d){return d.toISOString().split('T')[0]}
+function fmtHour(iso){const d=new Date(iso);return d.getDate()+'d '+String(d.getHours()).padStart(2,'0')+'h'}
 
-// ─── DOM refs ───
-const $ = (s) => document.querySelector(s);
-const $$ = (s) => document.querySelectorAll(s);
+// MIDI
+if(navigator.requestMIDIAccess){
+  navigator.requestMIDIAccess({sysex:false}).then(a=>{STATE.midiAccess=a;updateMIDI();a.onstatechange=updateMIDI}).catch(()=>midiErr());
+}else{midiErr()}
+function updateMIDI(){
+  const sel=$('#midi-output-select'),outs=Array.from(STATE.midiAccess.outputs.values());
+  sel.innerHTML='';
+  if(!outs.length){sel.innerHTML='<option value="">Sin puertos MIDI</option>';$('#midi-help').style.display='block';$('#midi-dot').style.background='var(--danger)';$('#midi-status-text').textContent='No MIDI'}
+  else{outs.forEach(o=>{const op=document.createElement('option');op.value=o.id;op.textContent=o.name;sel.appendChild(op)});STATE.midiOutputId=outs[0].id;$('#midi-help').style.display='none';$('#midi-dot').style.background='var(--wind)';$('#midi-status-text').textContent=`MIDI: ${outs.length} out`}
+}
+function midiErr(){$('#midi-dot').style.background='var(--danger)';$('#midi-status-text').textContent='No Web MIDI'}
+$('#midi-output-select').addEventListener('change',e=>{STATE.midiOutputId=e.target.value});
 
-// ─── Init dates ───
-const today = new Date();
-const weekAgo = new Date(today);
-weekAgo.setDate(weekAgo.getDate() - 7);
-$('#date-start').value = fmt(weekAgo);
-$('#date-end').value = fmt(today);
-
-function fmt(d) { return d.toISOString().split('T')[0]; }
-function fmtHour(iso) {
-  const d = new Date(iso);
-  return d.getDate() + 'd ' + String(d.getHours()).padStart(2,'0') + 'h';
+// City
+$('#city-search-btn').addEventListener('click',searchCity);
+$('#city-input').addEventListener('keydown',e=>{if(e.key==='Enter')searchCity()});
+async function searchCity(){
+  const q=$('#city-input').value.trim();if(!q)return;$('#city-search-btn').textContent='...';
+  try{const r=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=es`);const j=await r.json();const res=j.results||[];const box=$('#search-results');box.innerHTML='';
+  if(res.length){const w=document.createElement('div');w.className='search-results';res.forEach(r=>{const d=document.createElement('div');d.className='search-result';d.textContent=`${r.name}, ${r.admin1||''} — ${r.country||''}`;d.addEventListener('click',()=>{STATE.city=`${r.name}, ${r.country||''}`;STATE.lat=r.latitude;STATE.lon=r.longitude;$('#city-input').value=r.name;$('#location-info').textContent=`${STATE.city} (${STATE.lat.toFixed(2)}, ${STATE.lon.toFixed(2)})`;box.innerHTML=''});w.appendChild(d)});box.appendChild(w)}}catch{}
+  $('#city-search-btn').textContent='→';
 }
 
-// ─── MIDI Init ───
-if (navigator.requestMIDIAccess) {
-  navigator.requestMIDIAccess({ sysex: false }).then(access => {
-    STATE.midiAccess = access;
-    updateMIDIOutputs();
-    access.onstatechange = updateMIDIOutputs;
-  }).catch(() => showMIDIError());
-} else {
-  showMIDIError();
+// Sources
+$$('.source-toggle').forEach(el=>{el.addEventListener('click',()=>{const k=el.dataset.source;STATE.sources[k].active=!STATE.sources[k].active;el.classList.toggle('active',STATE.sources[k].active);renderMappings()})});
+
+// Fetch
+$('#fetch-btn').addEventListener('click',fetchData);
+async function fetchData(){
+  const btn=$('#fetch-btn');btn.textContent='Cargando...';btn.disabled=true;hideErr();
+  const params=[];
+  if(STATE.sources.temperature.active)params.push('temperature_2m');
+  if(STATE.sources.wind.active)params.push('wind_speed_10m');
+  if(!params.length){showErr('Activa al menos una fuente');btn.textContent='Obtener datos';btn.disabled=false;return}
+  try{
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${STATE.lat}&longitude=${STATE.lon}&hourly=${params.join(',')}&start_date=${$('#date-start').value}&end_date=${$('#date-end').value}&timezone=auto`;
+    const r=await fetch(url);const j=await r.json();if(j.error)throw new Error(j.reason||'Error de API');
+    STATE.data=j.hourly.time.map((t,i)=>({time:t,index:i,temperature:j.hourly.temperature_2m?.[i]??null,wind:j.hourly.wind_speed_10m?.[i]??null}));
+    ['temperature','wind'].forEach(k=>{if(STATE.sources[k].active&&STATE.sources[k].autoRange){const v=STATE.data.map(r=>r[k]).filter(v=>v!==null);if(v.length){const mn=Math.floor(Math.min(...v)),mx=Math.ceil(Math.max(...v));STATE.sources[k].inMin=mn;STATE.sources[k].inMax=mx;STATE.sources[k].viewMin=mn;STATE.sources[k].viewMax=mx}}});
+    STATE.playheadIndex=0;STATE.playing=false;clearInterval(STATE.playInterval);
+    renderCharts();renderMappings();updatePlayUI();
+    $('#play-btn').disabled=false;$('#stop-btn').disabled=false;$('#empty-state').style.display='none';
+    $('#data-stats').style.display='block';$('#stat-hours').textContent=`${STATE.data.length}h de datos`;updateCT();$('#send-current-btn').style.display='block';
+  }catch(e){showErr(e.message)}
+  btn.textContent='Obtener datos';btn.disabled=false;
 }
+function showErr(m){const b=$('#error-box');b.style.display='block';b.className='info-danger';b.textContent=m}
+function hideErr(){$('#error-box').style.display='none'}
 
-function updateMIDIOutputs() {
-  const sel = $('#midi-output-select');
-  const outputs = Array.from(STATE.midiAccess.outputs.values());
-  sel.innerHTML = '';
-  if (outputs.length === 0) {
-    sel.innerHTML = '<option value="">Sin puertos MIDI</option>';
-    $('#midi-help').style.display = 'block';
-    $('#midi-dot').style.background = 'var(--danger)';
-    $('#midi-status-text').textContent = 'No MIDI';
-  } else {
-    outputs.forEach(o => {
-      const opt = document.createElement('option');
-      opt.value = o.id;
-      opt.textContent = o.name;
-      sel.appendChild(opt);
-    });
-    STATE.midiOutputId = outputs[0].id;
-    $('#midi-help').style.display = 'none';
-    $('#midi-dot').style.background = 'var(--wind)';
-    $('#midi-status-text').textContent = `MIDI: ${outputs.length} output${outputs.length > 1 ? 's' : ''}`;
-  }
-}
-
-function showMIDIError() {
-  $('#midi-dot').style.background = 'var(--danger)';
-  $('#midi-status-text').textContent = 'Web MIDI no soportada';
-}
-
-$('#midi-output-select').addEventListener('change', e => { STATE.midiOutputId = e.target.value; });
-
-// ─── City Search ───
-$('#city-search-btn').addEventListener('click', searchCity);
-$('#city-input').addEventListener('keydown', e => { if (e.key === 'Enter') searchCity(); });
-
-async function searchCity() {
-  const q = $('#city-input').value.trim();
-  if (!q) return;
-  $('#city-search-btn').textContent = '...';
-  try {
-    const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(q)}&count=5&language=es`);
-    const json = await res.json();
-    const results = json.results || [];
-    const box = $('#search-results');
-    box.innerHTML = '';
-    if (results.length) {
-      const wrap = document.createElement('div');
-      wrap.className = 'search-results';
-      results.forEach(r => {
-        const div = document.createElement('div');
-        div.className = 'search-result';
-        div.textContent = `${r.name}, ${r.admin1 || ''} — ${r.country || ''}`;
-        div.addEventListener('click', () => {
-          STATE.city = `${r.name}, ${r.country || ''}`;
-          STATE.lat = r.latitude;
-          STATE.lon = r.longitude;
-          $('#city-input').value = r.name;
-          $('#location-info').textContent = `${STATE.city} (${STATE.lat.toFixed(2)}, ${STATE.lon.toFixed(2)})`;
-          box.innerHTML = '';
-        });
-        wrap.appendChild(div);
-      });
-      box.appendChild(wrap);
-    }
-  } catch {}
-  $('#city-search-btn').textContent = '→';
-}
-
-// ─── Source Toggles ───
-$$('.source-toggle').forEach(el => {
-  el.addEventListener('click', () => {
-    const key = el.dataset.source;
-    STATE.sources[key].active = !STATE.sources[key].active;
-    el.classList.toggle('active', STATE.sources[key].active);
-    renderMappings();
-  });
-});
-
-// ─── Fetch Data ───
-$('#fetch-btn').addEventListener('click', fetchData);
-
-async function fetchData() {
-  const btn = $('#fetch-btn');
-  btn.textContent = 'Cargando...';
-  btn.disabled = true;
-  hideError();
-
-  const params = [];
-  if (STATE.sources.temperature.active) params.push('temperature_2m');
-  if (STATE.sources.wind.active) params.push('wind_speed_10m');
-
-  if (!params.length) {
-    showError('Activa al menos una fuente de datos');
-    btn.textContent = 'Obtener datos';
-    btn.disabled = false;
-    return;
-  }
-
-  const startDate = $('#date-start').value;
-  const endDate = $('#date-end').value;
-
-  try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${STATE.lat}&longitude=${STATE.lon}&hourly=${params.join(',')}&start_date=${startDate}&end_date=${endDate}&timezone=auto`;
-    const res = await fetch(url);
-    const json = await res.json();
-    if (json.error) throw new Error(json.reason || 'Error de API');
-
-    const hours = json.hourly.time;
-    STATE.data = hours.map((t, i) => ({
-      time: t,
-      index: i,
-      temperature: json.hourly.temperature_2m?.[i] ?? null,
-      wind: json.hourly.wind_speed_10m?.[i] ?? null,
-    }));
-
-    // Auto range
-    ['temperature', 'wind'].forEach(key => {
-      if (STATE.sources[key].active && STATE.sources[key].autoRange) {
-        const vals = STATE.data.map(r => r[key]).filter(v => v !== null);
-        if (vals.length) {
-          STATE.sources[key].inMin = Math.floor(Math.min(...vals));
-          STATE.sources[key].inMax = Math.ceil(Math.max(...vals));
-        }
-      }
-    });
-
-    STATE.playheadIndex = 0;
-    STATE.playing = false;
-    clearInterval(STATE.playInterval);
-
-    renderCharts();
-    renderMappings();
-    updatePlaybackUI();
-
-    $('#play-btn').disabled = false;
-    $('#stop-btn').disabled = false;
-    $('#empty-state').style.display = 'none';
-    $('#data-stats').style.display = 'block';
-    $('#stat-hours').textContent = `${STATE.data.length} horas de datos`;
-    updateCompressedTime();
-    $('#send-current-btn').style.display = 'block';
-
-  } catch (e) {
-    showError(e.message);
-  }
-
-  btn.textContent = 'Obtener datos';
-  btn.disabled = false;
-}
-
-function showError(msg) {
-  const box = $('#error-box');
-  box.style.display = 'block';
-  box.className = 'info-danger';
-  box.textContent = msg;
-}
-function hideError() { $('#error-box').style.display = 'none'; }
-
-// ─── Charts ───
-function renderCharts() {
-  ['temperature', 'wind'].forEach(key => {
-    const wrap = $(`#chart-${key === 'temperature' ? 'temp' : 'wind'}-wrap`);
-    const canvasId = key === 'temperature' ? 'chart-temp' : 'chart-wind';
-
-    if (!STATE.sources[key].active) {
-      wrap.style.display = 'none';
-      if (STATE.charts[key]) { STATE.charts[key].destroy(); STATE.charts[key] = null; }
-      return;
-    }
-
-    wrap.style.display = 'block';
-    const canvas = $(`#${canvasId}`);
-    if (STATE.charts[key]) STATE.charts[key].destroy();
-
-    const src = STATE.sources[key];
-    const vals = STATE.data.map(r => r[key]);
-    const labels = STATE.data.map(r => r.time);
-    const interval = Math.max(1, Math.floor(STATE.data.length / 8));
-
-    STATE.charts[key] = new Chart(canvas, {
-      type: 'line',
-      data: {
-        labels,
-        datasets: [{
-          data: vals,
-          borderColor: src.color,
-          borderWidth: 1.5,
-          pointRadius: 0,
-          tension: 0.3,
-          fill: false
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        animation: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: false }
-        },
-        scales: {
-          x: {
-            ticks: {
-              callback: (val, i) => i % interval === 0 ? fmtHour(labels[i]) : '',
-              color: '#3A3940',
-              font: { size: 9 },
-              maxRotation: 0
-            },
-            grid: { color: '#1E1D2440' }
-          },
-          y: {
-            min: src.inMin,
-            max: src.inMax,
-            ticks: { color: '#3A3940', font: { size: 9 } },
-            grid: { color: '#1E1D2440' }
-          }
-        }
-      },
-      plugins: [{
-        id: 'playhead',
-        afterDraw(chart) {
-          if (!STATE.data) return;
-          const meta = chart.getDatasetMeta(0);
-          const point = meta.data[STATE.playheadIndex];
-          if (!point) return;
-          const ctx = chart.ctx;
-          const yAxis = chart.scales.y;
-          ctx.save();
-          ctx.strokeStyle = '#9A8AFF';
-          ctx.lineWidth = 1;
-          ctx.setLineDash([3, 3]);
-          ctx.beginPath();
-          ctx.moveTo(point.x, yAxis.top);
-          ctx.lineTo(point.x, yAxis.bottom);
-          ctx.stroke();
-          ctx.restore();
-        }
-      }]
+// Charts
+function renderCharts(){
+  const km={temperature:'temp',wind:'wind'};
+  Object.entries(STATE.sources).forEach(([k,src])=>{
+    const wrap=$(`#chart-${km[k]}-wrap`),cid=`chart-${km[k]}`;
+    if(!src.active){wrap.style.display='none';if(STATE.charts[k]){STATE.charts[k].destroy();STATE.charts[k]=null}return}
+    wrap.style.display='flex';if(STATE.charts[k])STATE.charts[k].destroy();
+    const vals=STATE.data.map(r=>r[k]),labels=STATE.data.map(r=>r.time),iv=Math.max(1,Math.floor(STATE.data.length/8));
+    STATE.charts[k]=new Chart($(`#${cid}`),{
+      type:'line',
+      data:{labels,datasets:[{data:vals,borderColor:src.color,borderWidth:1.5,pointRadius:0,tension:0.3,fill:false}]},
+      options:{responsive:true,maintainAspectRatio:false,animation:false,
+        plugins:{legend:{display:false},tooltip:{enabled:false}},
+        scales:{
+          x:{ticks:{callback:(v,i)=>i%iv===0?fmtHour(labels[i]):'',color:'#3A3940',font:{size:7},maxRotation:0},grid:{color:'#1E1D2440'}},
+          y:{min:src.viewMin,max:src.viewMax,ticks:{color:'#3A3940',font:{size:7}},grid:{color:'#1E1D2440'}}
+        }},
+      plugins:[{id:'ph',afterDraw(chart){if(!STATE.data)return;const p=chart.getDatasetMeta(0).data[STATE.playheadIndex];if(!p)return;const ctx=chart.ctx,yA=chart.scales.y;ctx.save();ctx.strokeStyle='#9A8AFF';ctx.lineWidth=1;ctx.setLineDash([3,3]);ctx.beginPath();ctx.moveTo(p.x,yA.top);ctx.lineTo(p.x,yA.bottom);ctx.stroke();ctx.restore()}}]
     });
   });
 }
-
-function updateChartValues() {
-  if (!STATE.data) return;
-  const point = STATE.data[STATE.playheadIndex];
-  if (STATE.sources.temperature.active) {
-    $('#temp-val').textContent = point.temperature !== null ? `${point.temperature.toFixed(1)} °C` : '—';
-  }
-  if (STATE.sources.wind.active) {
-    $('#wind-val').textContent = point.wind !== null ? `${point.wind.toFixed(1)} km/h` : '—';
-  }
-  // Redraw playhead
-  Object.values(STATE.charts).forEach(c => { if (c) c.draw(); });
+function updateChartVals(){
+  if(!STATE.data)return;const p=STATE.data[STATE.playheadIndex];
+  if(STATE.sources.temperature.active)$('#temp-val').textContent=p.temperature!==null?`${p.temperature.toFixed(1)}°C`:'—';
+  if(STATE.sources.wind.active)$('#wind-val').textContent=p.wind!==null?`${p.wind.toFixed(1)}km/h`:'—';
+  Object.values(STATE.charts).forEach(c=>{if(c)c.draw()});
 }
 
-// ─── Speed buttons ───
-const speedContainer = $('#speed-btns');
-SPEEDS.forEach(s => {
-  const btn = document.createElement('button');
-  btn.className = `btn-sm speed-btn${s === STATE.playbackSpeed ? ' active' : ''}`;
-  btn.textContent = s + 'x';
-  btn.addEventListener('click', () => {
-    STATE.playbackSpeed = s;
-    $$('.speed-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    updateCompressedTime();
-    if (STATE.playing) restartPlayback();
-  });
-  speedContainer.appendChild(btn);
-});
+// Zoom
+$$('.zoom-btn').forEach(btn=>{btn.addEventListener('click',()=>{
+  const k=btn.dataset.source,dir=btn.dataset.dir,src=STATE.sources[k];
+  if(!STATE.data)return;
+  if(dir==='fit'){const v=STATE.data.map(r=>r[k]).filter(v=>v!==null);if(v.length){src.viewMin=Math.floor(Math.min(...v));src.viewMax=Math.ceil(Math.max(...v))}}
+  else{const range=src.viewMax-src.viewMin,mid=(src.viewMin+src.viewMax)/2,f=dir==='in'?0.6:1.6,nr=Math.max(2,range*f);src.viewMin=Math.round(mid-nr/2);src.viewMax=Math.round(mid+nr/2)}
+  if(STATE.charts[k]){STATE.charts[k].options.scales.y.min=src.viewMin;STATE.charts[k].options.scales.y.max=src.viewMax;STATE.charts[k].update('none')}
+})});
 
-function updateCompressedTime() {
-  if (STATE.data) {
-    $('#stat-compressed').textContent = `Comprimido a ~${Math.round(STATE.data.length / STATE.playbackSpeed)}s @ ${STATE.playbackSpeed}x`;
-  }
+// Speeds
+const sC=$('#speed-btns');
+SPEEDS.forEach(s=>{const b=document.createElement('button');b.className=`btn-sm speed-btn${s===STATE.playbackSpeed?' active':''}`;b.textContent=s+'x';b.addEventListener('click',()=>{STATE.playbackSpeed=s;$$('.speed-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');updateCT();if(STATE.playing)restartPlay()});sC.appendChild(b)});
+function updateCT(){if(STATE.data)$('#stat-compressed').textContent=`~${Math.round(STATE.data.length/STATE.playbackSpeed)}s @ ${STATE.playbackSpeed}x`}
+
+// Playback
+$('#play-btn').addEventListener('click',()=>{if(!STATE.data)return;if(STATE.playheadIndex>=STATE.data.length-1)STATE.playheadIndex=0;STATE.playing=!STATE.playing;if(STATE.playing)startPlay();else stopPlay();updatePlayUI()});
+$('#stop-btn').addEventListener('click',()=>{STATE.playing=false;clearInterval(STATE.playInterval);STATE.playheadIndex=0;updatePlayUI();updateChartVals()});
+$('#progress-bar').addEventListener('click',e=>{if(!STATE.data)return;const r=e.currentTarget.getBoundingClientRect();STATE.playheadIndex=Math.round(((e.clientX-r.left)/r.width)*(STATE.data.length-1));updatePlayUI();updateChartVals();if(!STATE.playing)sendMIDI(STATE.data[STATE.playheadIndex])});
+
+function startPlay(){clearInterval(STATE.playInterval);STATE.playInterval=setInterval(()=>{STATE.playheadIndex++;if(STATE.playheadIndex>=STATE.data.length){STATE.playing=false;STATE.playheadIndex=STATE.data.length-1;clearInterval(STATE.playInterval);updatePlayUI();return}sendMIDI(STATE.data[STATE.playheadIndex]);updatePlayUI();updateChartVals()},Math.round(1000/STATE.playbackSpeed))}
+function stopPlay(){clearInterval(STATE.playInterval)}
+function restartPlay(){if(STATE.playing){stopPlay();startPlay()}}
+function updatePlayUI(){$('#play-btn').textContent=STATE.playing?'❚❚':'▶';if(STATE.data){const pct=Math.round((STATE.playheadIndex/(STATE.data.length-1))*100);$('#progress-fill').style.width=pct+'%';$('#playback-info').textContent=`${STATE.playheadIndex+1}/${STATE.data.length} | ${pct}%`}$('#send-current-btn').style.display=(STATE.data&&!STATE.playing)?'block':'none'}
+
+// MIDI
+function mapVal(v,iMin,iMax,oMin,oMax,mul){if(iMax===iMin)return oMin;let n=(v-iMin)/(iMax-iMin);n=Math.max(0,Math.min(1,n*mul));return Math.round(oMin+n*(oMax-oMin))}
+function sendMIDI(dp){
+  if(!STATE.midiAccess||!STATE.midiOutputId)return;const out=STATE.midiAccess.outputs.get(STATE.midiOutputId);if(!out)return;STATE.lastSent={};
+  Object.entries(STATE.sources).forEach(([k,src])=>{if(!src.active||dp[k]==null)return;src.mappings.forEach(m=>{if(!m.enabled)return;const v=mapVal(dp[k],src.inMin,src.inMax,m.outMin,m.outMax,m.multiplier);out.send([0xB0|((m.channel-1)&0x0F),m.cc&0x7F,v&0x7F]);STATE.lastSent[`${k}-${m.id}`]={cc:m.cc,ch:m.channel,val:v,raw:dp[k],unit:src.unit}})});
+  renderMon();
 }
+function renderMon(){const mon=$('#midi-monitor'),e=Object.entries(STATE.lastSent);if(!e.length){mon.style.display='none';return}mon.style.display='flex';mon.innerHTML=e.map(([k,v])=>`<div class="midi-tag">CC${v.cc} ch${v.ch}: <span class="val">${v.val}</span> <span class="raw">← ${v.raw?.toFixed(1)}${v.unit}</span></div>`).join('')}
+$('#send-current-btn').addEventListener('click',()=>{if(STATE.data)sendMIDI(STATE.data[STATE.playheadIndex])});
 
-// ─── Playback ───
-$('#play-btn').addEventListener('click', () => {
-  if (!STATE.data) return;
-  if (STATE.playheadIndex >= STATE.data.length - 1) STATE.playheadIndex = 0;
-  STATE.playing = !STATE.playing;
-  if (STATE.playing) startPlayback();
-  else stopPlayback();
-  updatePlaybackUI();
-});
-
-$('#stop-btn').addEventListener('click', () => {
-  STATE.playing = false;
-  clearInterval(STATE.playInterval);
-  STATE.playheadIndex = 0;
-  updatePlaybackUI();
-  updateChartValues();
-});
-
-$('#progress-bar').addEventListener('click', e => {
-  if (!STATE.data) return;
-  const rect = e.currentTarget.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  STATE.playheadIndex = Math.round(pct * (STATE.data.length - 1));
-  updatePlaybackUI();
-  updateChartValues();
-  if (!STATE.playing) sendMIDI(STATE.data[STATE.playheadIndex]);
-});
-
-function startPlayback() {
-  clearInterval(STATE.playInterval);
-  const ms = Math.round(1000 / STATE.playbackSpeed);
-  STATE.playInterval = setInterval(() => {
-    STATE.playheadIndex++;
-    if (STATE.playheadIndex >= STATE.data.length) {
-      STATE.playing = false;
-      STATE.playheadIndex = STATE.data.length - 1;
-      clearInterval(STATE.playInterval);
-      updatePlaybackUI();
-      return;
-    }
-    sendMIDI(STATE.data[STATE.playheadIndex]);
-    updatePlaybackUI();
-    updateChartValues();
-  }, ms);
-}
-
-function stopPlayback() {
-  clearInterval(STATE.playInterval);
-}
-
-function restartPlayback() {
-  if (STATE.playing) { stopPlayback(); startPlayback(); }
-}
-
-function updatePlaybackUI() {
-  const btn = $('#play-btn');
-  btn.textContent = STATE.playing ? '❚❚' : '▶';
-
-  if (STATE.data) {
-    const pct = Math.round((STATE.playheadIndex / (STATE.data.length - 1)) * 100);
-    $('#progress-fill').style.width = pct + '%';
-    $('#playback-info').textContent = `${STATE.playheadIndex + 1}/${STATE.data.length} | ${pct}%`;
-  }
-
-  $('#send-current-btn').style.display = (STATE.data && !STATE.playing) ? 'block' : 'none';
-}
-
-// ─── MIDI Send ───
-function mapValue(value, inMin, inMax, outMin, outMax, multiplier) {
-  if (inMax === inMin) return outMin;
-  let n = (value - inMin) / (inMax - inMin);
-  n = Math.max(0, Math.min(1, n * multiplier));
-  return Math.round(outMin + n * (outMax - outMin));
-}
-
-function sendMIDI(dataPoint) {
-  if (!STATE.midiAccess || !STATE.midiOutputId) return;
-  const output = STATE.midiAccess.outputs.get(STATE.midiOutputId);
-  if (!output) return;
-
-  STATE.lastSent = {};
-  Object.entries(STATE.sources).forEach(([key, src]) => {
-    if (!src.active || dataPoint[key] === null || dataPoint[key] === undefined) return;
-    src.mappings.forEach(m => {
-      if (!m.enabled) return;
-      const val = mapValue(dataPoint[key], src.inMin, src.inMax, m.outMin, m.outMax, m.multiplier);
-      const status = 0xB0 | ((m.channel - 1) & 0x0F);
-      output.send([status, m.cc & 0x7F, val & 0x7F]);
-      STATE.lastSent[`${key}-${m.id}`] = { cc: m.cc, ch: m.channel, val, raw: dataPoint[key], unit: src.unit };
-    });
-  });
-  renderMIDIMonitor();
-}
-
-function renderMIDIMonitor() {
-  const monitor = $('#midi-monitor');
-  const entries = Object.entries(STATE.lastSent);
-  if (!entries.length) { monitor.style.display = 'none'; return; }
-  monitor.style.display = 'flex';
-  monitor.innerHTML = entries.map(([k, v]) =>
-    `<div class="midi-tag">CC${v.cc} ch${v.ch}: <span class="val">${v.val}</span> <span class="raw">← ${v.raw?.toFixed(1)}${v.unit}</span></div>`
-  ).join('');
-}
-
-$('#send-current-btn').addEventListener('click', () => {
-  if (STATE.data) sendMIDI(STATE.data[STATE.playheadIndex]);
-});
-
-// ─── Mappings Panel ───
-function renderMappings() {
-  const area = $('#mappings-area');
-  area.innerHTML = '';
-
-  Object.entries(STATE.sources).forEach(([key, src]) => {
-    if (!src.active) return;
-
-    const section = document.createElement('div');
-    section.style.cssText = 'border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:12px';
-    section.style.setProperty('--source-color', src.color);
-    section.style.setProperty('--sc-rgb', src.colorRGB);
-
-    // Header
-    const header = document.createElement('div');
-    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;margin-bottom:8px';
-    header.innerHTML = `<span style="color:${src.color};font-size:12px;font-weight:500">${src.label}</span>`;
-    const addBtn = document.createElement('button');
-    addBtn.className = 'btn-sm';
-    addBtn.style.fontSize = '10px';
-    addBtn.textContent = '+ mapeo';
-    addBtn.addEventListener('click', () => {
-      src.mappings.push({ id: STATE.nextMappingId++, cc: 1, channel: 1, multiplier: 1, outMin: 0, outMax: 127, enabled: true });
-      renderMappings();
-    });
-    header.appendChild(addBtn);
-    section.appendChild(header);
+// Mappings
+function renderMappings(){
+  const area=$('#mappings-area');area.innerHTML='';
+  Object.entries(STATE.sources).forEach(([key,src])=>{
+    if(!src.active)return;
+    const sec=document.createElement('div');sec.style.cssText='border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:4px';
+    const hdr=document.createElement('div');hdr.style.cssText='display:flex;align-items:center;justify-content:space-between;margin-bottom:3px';
+    hdr.innerHTML=`<span style="color:${src.color};font-size:10px;font-weight:500">${src.label}</span>`;
+    const ab=document.createElement('button');ab.className='btn-sm';ab.style.fontSize='8px';ab.textContent='+ mapeo';
+    ab.addEventListener('click',()=>{src.mappings.push({id:STATE.nextMappingId++,cc:1,channel:1,multiplier:1,outMin:0,outMax:127,enabled:true});renderMappings()});
+    hdr.appendChild(ab);sec.appendChild(hdr);
 
     // Input range
-    const inRow = document.createElement('div');
-    inRow.style.cssText = 'display:flex;gap:4px;margin-bottom:8px;align-items:center';
-    inRow.innerHTML = `
-      <span style="font-size:10px;color:var(--text3);width:28px">In:</span>
-      <input type="number" value="${src.inMin}" style="width:52px;font-size:11px;text-align:center" data-field="inMin">
-      <span style="color:var(--text4)">—</span>
-      <input type="number" value="${src.inMax}" style="width:52px;font-size:11px;text-align:center" data-field="inMax">
-      <span style="font-size:10px;color:var(--text3)">${src.unit}</span>
-      <label style="font-size:10px;color:var(--text3);display:flex;align-items:center;gap:3px;margin-left:auto;cursor:pointer">
-        <input type="checkbox" ${src.autoRange ? 'checked' : ''} data-field="autoRange"> auto
-      </label>
-    `;
-    inRow.querySelectorAll('input[type="number"]').forEach(inp => {
-      inp.addEventListener('change', e => {
-        src[e.target.dataset.field] = Number(e.target.value);
-        src.autoRange = false;
-        inRow.querySelector('[data-field="autoRange"]').checked = false;
-        if (STATE.charts[key]) {
-          STATE.charts[key].options.scales.y.min = src.inMin;
-          STATE.charts[key].options.scales.y.max = src.inMax;
-          STATE.charts[key].update('none');
-        }
-      });
+    const ir=document.createElement('div');ir.style.cssText='display:flex;gap:2px;margin-bottom:4px;align-items:center;flex-wrap:wrap';
+    ir.innerHTML=`<span style="font-size:8px;color:var(--text3);width:16px">In:</span>
+      <input type="number" value="${src.inMin}" style="width:38px;font-size:9px;text-align:center" data-field="inMin">
+      <span style="color:var(--text4);font-size:9px">—</span>
+      <input type="number" value="${src.inMax}" style="width:38px;font-size:9px;text-align:center" data-field="inMax">
+      <span style="font-size:8px;color:var(--text3)">${src.unit}</span>
+      <label style="font-size:8px;color:var(--text3);display:flex;align-items:center;gap:2px;margin-left:auto;cursor:pointer"><input type="checkbox" ${src.autoRange?'checked':''} data-field="autoRange"> auto</label>`;
+    ir.querySelectorAll('input[type="number"]').forEach(inp=>{inp.addEventListener('change',e=>{src[e.target.dataset.field]=Number(e.target.value);src.autoRange=false;ir.querySelector('[data-field="autoRange"]').checked=false})});
+    ir.querySelector('[data-field="autoRange"]').addEventListener('change',e=>{src.autoRange=e.target.checked});
+    sec.appendChild(ir);
+
+    src.mappings.forEach(m=>{
+      const card=document.createElement('div');card.className=`mapping-card${m.enabled?'':' disabled'}`;
+      // Row 1
+      const r1=document.createElement('div');r1.style.cssText='display:flex;align-items:center;gap:3px;margin-bottom:3px';
+      const tog=document.createElement('div');tog.className=`mapping-toggle${m.enabled?' on':''}`;tog.textContent=m.enabled?'✓':'';tog.style.borderColor=m.enabled?src.color:'';tog.style.background=m.enabled?`rgba(${src.colorRGB},0.19)`:'';tog.style.color=src.color;
+      tog.addEventListener('click',()=>{m.enabled=!m.enabled;renderMappings()});r1.appendChild(tog);
+      r1.insertAdjacentHTML('beforeend','<span style="font-size:9px;color:var(--text2)">CC</span>');
+      const ccI=document.createElement('input');ccI.type='number';ccI.min=0;ccI.max=127;ccI.value=m.cc;ccI.style.cssText='width:30px;font-size:9px;text-align:center';ccI.addEventListener('change',e=>{m.cc=Number(e.target.value)});r1.appendChild(ccI);
+      r1.insertAdjacentHTML('beforeend','<span style="font-size:9px;color:var(--text2)">Ch</span>');
+      const chI=document.createElement('input');chI.type='number';chI.min=1;chI.max=16;chI.value=m.channel;chI.style.cssText='width:26px;font-size:9px;text-align:center';chI.addEventListener('change',e=>{m.channel=Number(e.target.value)});r1.appendChild(chI);
+      if(src.mappings.length>1){const rm=document.createElement('button');rm.className='btn-sm';rm.style.cssText='font-size:7px;color:var(--danger);margin-left:auto;padding:1px 3px';rm.textContent='✕';rm.addEventListener('click',()=>{src.mappings=src.mappings.filter(x=>x.id!==m.id);renderMappings()});r1.appendChild(rm)}
+      card.appendChild(r1);
+      // Scale
+      const sw=document.createElement('div');sw.style.marginBottom='3px';sw.innerHTML='<span style="font-size:8px;color:var(--text3)">Escala</span>';
+      const sg=document.createElement('div');sg.className='scale-grid';
+      MULTIPLIERS.forEach(mul=>{const b=document.createElement('button');b.className=`btn-sm scale-btn${m.multiplier===mul?' active':''}`;b.textContent='x'+mul;if(m.multiplier===mul){b.style.color=src.color;b.style.borderColor=`rgba(${src.colorRGB},0.3)`}b.addEventListener('click',()=>{m.multiplier=mul;renderMappings()});sg.appendChild(b)});
+      sw.appendChild(sg);card.appendChild(sw);
+      // Output
+      const r3=document.createElement('div');r3.style.cssText='display:flex;gap:2px;align-items:center';
+      r3.innerHTML='<span style="font-size:8px;color:var(--text3);width:16px">Out:</span>';
+      const oMin=document.createElement('input');oMin.type='number';oMin.min=0;oMin.max=127;oMin.value=m.outMin;oMin.style.cssText='width:30px;font-size:9px;text-align:center';oMin.addEventListener('change',e=>{m.outMin=Number(e.target.value)});r3.appendChild(oMin);
+      r3.insertAdjacentHTML('beforeend','<span style="color:var(--text4);font-size:9px">—</span>');
+      const oMax=document.createElement('input');oMax.type='number';oMax.min=0;oMax.max=127;oMax.value=m.outMax;oMax.style.cssText='width:30px;font-size:9px;text-align:center';oMax.addEventListener('change',e=>{m.outMax=Number(e.target.value)});r3.appendChild(oMax);
+      card.appendChild(r3);sec.appendChild(card);
     });
-    inRow.querySelector('[data-field="autoRange"]').addEventListener('change', e => {
-      src.autoRange = e.target.checked;
-    });
-    section.appendChild(inRow);
-
-    // Mapping cards
-    src.mappings.forEach(m => {
-      const card = document.createElement('div');
-      card.className = `mapping-card${m.enabled ? '' : ' disabled'}`;
-
-      // Row 1: toggle, CC, Channel, remove
-      const row1 = document.createElement('div');
-      row1.style.cssText = 'display:flex;align-items:center;gap:6px;margin-bottom:6px';
-
-      const toggle = document.createElement('div');
-      toggle.className = `mapping-toggle${m.enabled ? ' on' : ''}`;
-      toggle.textContent = m.enabled ? '✓' : '';
-      toggle.style.borderColor = m.enabled ? src.color : '';
-      toggle.style.background = m.enabled ? `rgba(${src.colorRGB},0.19)` : '';
-      toggle.style.color = src.color;
-      toggle.addEventListener('click', () => { m.enabled = !m.enabled; renderMappings(); });
-
-      row1.appendChild(toggle);
-      row1.innerHTML += `<span style="font-size:11px;color:var(--text2)">CC</span>`;
-      const ccInp = document.createElement('input');
-      ccInp.type = 'number'; ccInp.min = 0; ccInp.max = 127; ccInp.value = m.cc;
-      ccInp.style.cssText = 'width:40px;font-size:11px;text-align:center';
-      ccInp.addEventListener('change', e => { m.cc = Number(e.target.value); });
-      row1.appendChild(ccInp);
-
-      const chLabel = document.createElement('span');
-      chLabel.style.cssText = 'font-size:11px;color:var(--text2)';
-      chLabel.textContent = 'Ch';
-      row1.appendChild(chLabel);
-
-      const chInp = document.createElement('input');
-      chInp.type = 'number'; chInp.min = 1; chInp.max = 16; chInp.value = m.channel;
-      chInp.style.cssText = 'width:36px;font-size:11px;text-align:center';
-      chInp.addEventListener('change', e => { m.channel = Number(e.target.value); });
-      row1.appendChild(chInp);
-
-      if (src.mappings.length > 1) {
-        const rmBtn = document.createElement('button');
-        rmBtn.className = 'btn-sm';
-        rmBtn.style.cssText = 'font-size:9px;color:var(--danger);margin-left:auto;padding:2px 5px';
-        rmBtn.textContent = '✕';
-        rmBtn.addEventListener('click', () => {
-          src.mappings = src.mappings.filter(x => x.id !== m.id);
-          renderMappings();
-        });
-        row1.appendChild(rmBtn);
-      }
-      card.appendChild(row1);
-
-      // Row 2: Scale multiplier
-      const scaleWrap = document.createElement('div');
-      scaleWrap.style.marginBottom = '6px';
-      scaleWrap.innerHTML = '<span style="font-size:10px;color:var(--text3)">Escala</span>';
-      const scaleGrid = document.createElement('div');
-      scaleGrid.className = 'scale-grid';
-      MULTIPLIERS.forEach(mul => {
-        const btn = document.createElement('button');
-        btn.className = `btn-sm scale-btn${m.multiplier === mul ? ' active' : ''}`;
-        btn.textContent = 'x' + mul;
-        if (m.multiplier === mul) {
-          btn.style.background = `rgba(${src.colorRGB},0.15)`;
-          btn.style.color = src.color;
-          btn.style.borderColor = `rgba(${src.colorRGB},0.3)`;
-        }
-        btn.addEventListener('click', () => { m.multiplier = mul; renderMappings(); });
-        scaleGrid.appendChild(btn);
-      });
-      scaleWrap.appendChild(scaleGrid);
-      card.appendChild(scaleWrap);
-
-      // Row 3: Output range
-      const outRow = document.createElement('div');
-      outRow.style.cssText = 'display:flex;gap:4px;align-items:center';
-      outRow.innerHTML = `<span style="font-size:10px;color:var(--text3);width:28px">Out:</span>`;
-
-      const outMinInp = document.createElement('input');
-      outMinInp.type = 'number'; outMinInp.min = 0; outMinInp.max = 127; outMinInp.value = m.outMin;
-      outMinInp.style.cssText = 'width:40px;font-size:11px;text-align:center';
-      outMinInp.addEventListener('change', e => { m.outMin = Number(e.target.value); });
-      outRow.appendChild(outMinInp);
-
-      outRow.innerHTML += '<span style="color:var(--text4)">—</span>';
-
-      const outMaxInp = document.createElement('input');
-      outMaxInp.type = 'number'; outMaxInp.min = 0; outMaxInp.max = 127; outMaxInp.value = m.outMax;
-      outMaxInp.style.cssText = 'width:40px;font-size:11px;text-align:center';
-      outMaxInp.addEventListener('change', e => { m.outMax = Number(e.target.value); });
-      outRow.appendChild(outMaxInp);
-
-      card.appendChild(outRow);
-      section.appendChild(card);
-    });
-
-    area.appendChild(section);
+    area.appendChild(sec);
   });
 }
-
-// Initial render
 renderMappings();
 </script>
 </body>
