@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -9,72 +10,77 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#0E0D11;--bg2:#16151C;--bg3:#1A1922;--border:#1E1D24;--border2:#2A2930;--text:#E2E0D8;--text2:#7A7980;--text3:#5A5960;--text4:#3A3940;--accent:#9A8AFF;--accent-bg:rgba(154,138,255,0.08);--accent-border:rgba(154,138,255,0.19);--danger:#E8593C;--clock:#F2A623}
 html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans','Helvetica Neue',sans-serif;font-size:11px}
-#header{border-bottom:1px solid var(--border);padding:4px 12px;display:flex;align-items:center;justify-content:space-between;height:32px;gap:8px}
-#header h1{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;letter-spacing:2px;color:var(--accent);white-space:nowrap}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans','Helvetica Neue',sans-serif;font-size:12px}
+#header{border-bottom:1px solid var(--border);padding:5px 14px;display:flex;align-items:center;justify-content:space-between;height:36px;gap:8px}
+#header h1{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:300;letter-spacing:2px;color:var(--accent);white-space:nowrap}
 .hdr-mid{display:flex;align-items:center;gap:6px;flex:1;justify-content:center}
 .hdr-right{display:flex;align-items:center;gap:6px}
-.midi-dot{width:5px;height:5px;border-radius:50%;display:inline-block}
-.midi-lbl{font-size:8px;color:var(--text3);white-space:nowrap}
-#app{display:grid;grid-template-columns:200px 1fr 220px;height:calc(100vh - 32px)}
-.panel{padding:6px;display:flex;flex-direction:column;gap:5px;overflow-y:auto}
-.panel::-webkit-scrollbar{width:2px}
+.midi-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.midi-lbl{font-size:10px;color:var(--text3);white-space:nowrap}
+#app{display:grid;grid-template-columns:220px 1fr 240px;height:calc(100vh - 36px)}
+.panel{padding:8px;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.panel::-webkit-scrollbar{width:3px}
 .panel::-webkit-scrollbar-thumb{background:var(--border2);border-radius:1px}
 .panel-left{border-right:1px solid var(--border)}
-.panel-right{border-left:1px solid var(--border);gap:3px}
-.panel-center{gap:3px}
-.label{display:block;font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;font-weight:500}
-input[type="text"],input[type="number"],input[type="date"],select{background:var(--bg2);border:1px solid var(--border2);border-radius:3px;padding:3px 5px;color:var(--text);font-size:10px;outline:none;font-family:inherit;width:100%}
+.panel-right{border-left:1px solid var(--border);gap:4px}
+.panel-center{gap:4px}
+.label{display:block;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;font-weight:500}
+input[type="text"],input[type="number"],input[type="date"],select{background:var(--bg2);border:1px solid var(--border2);border-radius:3px;padding:4px 6px;color:var(--text);font-size:11px;outline:none;font-family:inherit;width:100%}
 select{cursor:pointer}
 input[type="number"]{-moz-appearance:textfield}
 input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none}
 input:focus,select:focus{border-color:var(--accent-border)}
-.btn{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:3px;padding:3px 8px;color:var(--accent);font-size:10px;cursor:pointer;font-family:inherit;font-weight:500}
+.btn{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:4px;padding:4px 10px;color:var(--accent);font-size:11px;cursor:pointer;font-family:inherit;font-weight:500}
 .btn:hover{background:rgba(154,138,255,0.14)}
 .btn:disabled{opacity:0.4;cursor:default}
-.btn-sm{background:transparent;border:1px solid var(--border2);border-radius:2px;padding:1px 4px;color:var(--text2);font-size:9px;cursor:pointer;font-family:inherit}
+.btn-sm{background:transparent;border:1px solid var(--border2);border-radius:3px;padding:2px 5px;color:var(--text2);font-size:10px;cursor:pointer;font-family:inherit}
 .btn-sm:hover{border-color:var(--text3)}
 .btn-sm.active{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)}
-.row{display:flex;gap:3px}
-.row-center{display:flex;align-items:center;gap:4px}
+.row{display:flex;gap:4px}
+.row-center{display:flex;align-items:center;gap:5px}
 .search-results{background:var(--bg2);border:1px solid var(--border2);border-radius:3px;margin-top:2px;overflow:hidden;position:relative;z-index:10}
-.search-result{padding:3px 6px;cursor:pointer;font-size:9px;border-bottom:1px solid var(--border);color:#B0AFA8}
+.search-result{padding:4px 8px;cursor:pointer;font-size:11px;border-bottom:1px solid var(--border);color:#B0AFA8}
 .search-result:hover{background:var(--border)}
-#progress-bar{height:2px;background:var(--border);border-radius:1px;cursor:pointer;flex-shrink:0}
+#progress-bar{height:3px;background:var(--border);border-radius:1px;cursor:pointer;flex-shrink:0}
 #progress-fill{height:100%;background:var(--accent);border-radius:1px;transition:width 0.08s linear;width:0%}
-.speed-btn{min-width:22px;font-size:8px;text-align:center;padding:1px 2px}
+.speed-btn{min-width:26px;font-size:9px;text-align:center;padding:2px 3px}
 .speed-btn.active{background:rgba(154,138,255,0.12);color:var(--accent);border-color:rgba(154,138,255,0.25)}
-.slot{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:5px;margin-bottom:3px;position:relative}
-.slot-remove{position:absolute;top:3px;right:4px;font-size:7px;color:var(--text4);cursor:pointer;padding:1px 3px}
+.slot{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:6px;margin-bottom:4px;position:relative}
+.slot-remove{position:absolute;top:4px;right:5px;font-size:9px;color:var(--text4);cursor:pointer;padding:2px 4px}
 .slot-remove:hover{color:var(--danger)}
-.chart-wrap{flex:1;min-height:40px;max-height:38vh;display:flex;flex-direction:column}
-.chart-header{font-size:8px;margin-bottom:1px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.chart-wrap{flex:1;min-height:50px;max-height:38vh;display:flex;flex-direction:column}
+.chart-header{font-size:10px;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
 .chart-canvas-wrap{flex:1;min-height:0;position:relative}
 .chart-canvas-wrap canvas{position:absolute;top:0;left:0;width:100%;height:100%}
-.empty-state{flex:1;display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:12px;font-family:'Cormorant Garamond',serif}
-#midi-monitor{display:flex;gap:2px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:2px;flex-shrink:0}
-.midi-tag{font-size:7px;padding:1px 4px;background:var(--bg2);border-radius:2px;color:var(--text2);white-space:nowrap}
+.empty-state{flex:1;display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:14px;font-family:'Cormorant Garamond',serif}
+#midi-monitor{display:flex;gap:3px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:3px;flex-shrink:0}
+.midi-tag{font-size:9px;padding:2px 5px;background:var(--bg2);border-radius:3px;color:var(--text2);white-space:nowrap}
 .midi-tag .val{color:var(--accent);font-weight:500}
 .midi-tag .raw{color:var(--text4)}
-.map-card{background:var(--bg3);border-radius:3px;padding:4px 5px;margin-bottom:2px;border:1px solid var(--border)}
+.map-card{background:var(--bg3);border-radius:4px;padding:5px 6px;margin-bottom:3px;border:1px solid var(--border)}
 .map-card.disabled{opacity:0.45}
-.tm-grid{display:flex;gap:1px;flex-wrap:wrap;margin-top:1px}
-.tm-btn{min-width:18px;font-size:7px;padding:1px 0;text-align:center}
-.loop-row{display:flex;align-items:center;gap:3px;margin-top:2px;padding-top:2px;border-top:1px solid var(--border)}
-.loop-mode-btn{font-size:7px;padding:1px 3px}
+.tm-grid{display:flex;gap:2px;flex-wrap:wrap;margin-top:2px}
+.tm-btn{min-width:22px;font-size:9px;padding:2px 1px;text-align:center}
+.loop-row{display:flex;align-items:center;gap:4px;margin-top:3px;padding-top:3px;border-top:1px solid var(--border)}
+.loop-mode-btn{font-size:9px;padding:2px 4px}
 .loop-mode-btn.active{color:var(--accent);border-color:var(--accent-border)}
-.slew-wrap{display:flex;align-items:center;gap:3px;margin-top:2px}
-.slew-wrap input[type="range"]{flex:1;height:3px;-webkit-appearance:none;background:var(--border);border-radius:1px;outline:none}
-.slew-wrap input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:8px;height:8px;border-radius:50%;background:var(--accent);cursor:pointer}
-.info{font-size:9px;color:var(--text3)}
-.info-danger{font-size:9px;color:var(--danger);padding:3px 5px;background:#1C1418;border-radius:3px}
-.stats{font-size:9px;color:var(--text3);border-top:1px solid var(--border);padding-top:4px}
-.zoom-btn{padding:0 3px;font-size:9px;line-height:12px;min-width:14px;text-align:center}
-.clock-badge{font-size:8px;padding:1px 5px;border-radius:3px;font-weight:500}
+.slew-wrap{display:flex;align-items:center;gap:4px;margin-top:3px}
+.slew-wrap input[type="range"]{flex:1;height:4px;-webkit-appearance:none;background:var(--border);border-radius:2px;outline:none}
+.slew-wrap input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:10px;height:10px;border-radius:50%;background:var(--accent);cursor:pointer}
+.info{font-size:10px;color:var(--text3)}
+.info-danger{font-size:10px;color:var(--danger);padding:4px 6px;background:#1C1418;border-radius:3px}
+.stats{font-size:10px;color:var(--text3);border-top:1px solid var(--border);padding-top:5px}
+.zoom-btn{padding:1px 4px;font-size:10px;line-height:14px;min-width:16px;text-align:center}
+.clock-badge{font-size:10px;padding:2px 6px;border-radius:3px;font-weight:500}
 .clock-on{background:rgba(242,166,35,0.15);color:var(--clock);border:1px solid rgba(242,166,35,0.3)}
 .clock-off{background:transparent;color:var(--text4);border:1px solid var(--border2)}
-.follow-btn{font-size:7px;padding:1px 4px}
+.follow-btn{font-size:9px;padding:2px 5px}
 .follow-btn.active{background:rgba(242,166,35,0.12);color:var(--clock);border-color:rgba(242,166,35,0.3)}
+.preset-row{display:flex;gap:3px;align-items:center}
+.preset-item{display:flex;align-items:center;gap:3px;padding:3px 6px;background:var(--bg2);border:1px solid var(--border2);border-radius:3px;margin-bottom:2px;cursor:pointer;font-size:10px}
+.preset-item:hover{border-color:var(--accent-border)}
+.preset-item .preset-del{font-size:10px;color:var(--text4);cursor:pointer;margin-left:auto;padding:0 3px}
+.preset-item .preset-del:hover{color:var(--danger)}
 </style>
 </head>
 <body>
@@ -84,14 +90,14 @@ input:focus,select:focus{border-color:var(--accent-border)}
   <!-- Clock display -->
   <div class="hdr-mid">
     <span class="clock-badge clock-off" id="clock-badge">EXT CLK: --</span>
-    <span id="bpm-display" style="font-size:10px;color:var(--text3);font-weight:500;min-width:50px">-- BPM</span>
+    <span id="bpm-display" style="font-size:11px;color:var(--text3);font-weight:500;min-width:50px">-- BPM</span>
     <button class="btn-sm follow-btn" id="follow-btn" title="Seguir Start/Stop externo">Follow</button>
   </div>
   <div class="hdr-right">
     <span class="midi-lbl">In:</span>
-    <select id="midi-input-select" style="width:90px;font-size:8px;padding:2px 3px"></select>
+    <select id="midi-input-select" style="width:100px;font-size:10px;padding:3px 4px"></select>
     <span class="midi-lbl">Out:</span>
-    <select id="midi-output-select" style="width:90px;font-size:8px;padding:2px 3px"></select>
+    <select id="midi-output-select" style="width:100px;font-size:10px;padding:3px 4px"></select>
     <span class="midi-dot" id="midi-dot"></span>
   </div>
 </div>
@@ -121,33 +127,47 @@ input:focus,select:focus{border-color:var(--accent-border)}
     <div id="slots-area"></div>
     <div class="stats" id="data-stats" style="display:none"><div id="stat-hours"></div></div>
 
-    <!-- Export -->
-    <div id="export-section" style="display:none;border-top:1px solid var(--border);padding-top:4px">
-      <label class="label">Exportar onda</label>
-      <div class="row" style="margin-bottom:3px">
-        <select id="export-slot-select" style="flex:1;font-size:9px;padding:2px 3px"></select>
-      </div>
-      <div class="row" style="margin-bottom:3px;align-items:center">
-        <span style="font-size:7px;color:var(--text3);width:28px">Rango</span>
-        <input type="number" id="export-start" min="0" max="99" value="0" style="width:30px;font-size:8px;text-align:center">
-        <span style="font-size:7px;color:var(--text4)">%—</span>
-        <input type="number" id="export-end" min="1" max="100" value="100" style="width:30px;font-size:8px;text-align:center">
-        <span style="font-size:7px;color:var(--text4)">%</span>
-      </div>
-      <div class="row">
-        <button class="btn" id="export-wav-btn" style="flex:1;font-size:8px;padding:3px 4px">⬇ Wavetable</button>
-        <button class="btn" id="export-json-btn" style="flex:1;font-size:8px;padding:3px 4px">⬇ LFO JSON</button>
-      </div>
-    </div>
+```
+<!-- Presets -->
+<div style="border-top:1px solid var(--border);padding-top:5px">
+  <label class="label">Presets</label>
+  <div class="preset-row" style="margin-bottom:4px">
+    <input type="text" id="preset-name" placeholder="Nombre del preset..." style="flex:1">
+    <button class="btn" id="save-preset-btn" style="font-size:10px;padding:3px 8px;white-space:nowrap">Guardar</button>
+  </div>
+  <div id="presets-list"></div>
+</div>
+
+<!-- Export -->
+<div id="export-section" style="display:none;border-top:1px solid var(--border);padding-top:4px">
+  <label class="label">Exportar onda</label>
+  <div class="row" style="margin-bottom:3px">
+    <select id="export-slot-select" style="flex:1;font-size:9px;padding:2px 3px"></select>
+  </div>
+  <div class="row" style="margin-bottom:3px;align-items:center">
+    <span style="font-size:9px;color:var(--text3);width:28px">Rango</span>
+    <input type="number" id="export-start" min="0" max="99" value="0" style="width:30px;font-size:10px;text-align:center">
+    <span style="font-size:9px;color:var(--text4)">%—</span>
+    <input type="number" id="export-end" min="1" max="100" value="100" style="width:30px;font-size:10px;text-align:center">
+    <span style="font-size:9px;color:var(--text4)">%</span>
+  </div>
+  <div class="row">
+    <button class="btn" id="export-wav-btn" style="flex:1;font-size:10px;padding:3px 4px">⬇ Wavetable</button>
+    <button class="btn" id="export-json-btn" style="flex:1;font-size:10px;padding:3px 4px">⬇ LFO JSON</button>
+  </div>
+</div>
+```
+
   </div>
 
   <!-- Center -->
+
   <div class="panel panel-center">
     <div class="row-center">
       <button class="btn" id="play-btn" disabled style="width:26px;padding:3px 0;font-size:9px">▶</button>
-      <button class="btn-sm" id="stop-btn" disabled style="font-size:8px">■</button>
+      <button class="btn-sm" id="stop-btn" disabled style="font-size:10px">■</button>
       <div class="row" style="margin-left:2px" id="speed-btns"></div>
-      <div style="margin-left:auto;font-size:8px;color:var(--text3)" id="playback-info">—</div>
+      <div style="margin-left:auto;font-size:10px;color:var(--text3)" id="playback-info">—</div>
     </div>
     <div id="progress-bar"><div id="progress-fill"></div></div>
     <div id="charts-area" style="flex:1;display:flex;flex-direction:column;gap:2px;min-height:0">
@@ -157,6 +177,7 @@ input:focus,select:focus{border-color:var(--accent-border)}
   </div>
 
   <!-- Right -->
+
   <div class="panel panel-right">
     <label class="label" style="letter-spacing:1.5px">Mapeos MIDI</label>
     <div id="mappings-area" style="flex:1;overflow-y:auto"></div>
@@ -164,28 +185,48 @@ input:focus,select:focus{border-color:var(--accent-border)}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
 <script>
 // ═══════════════════════════════════════════
 // SOURCE CATALOG
 // ═══════════════════════════════════════════
 const CATALOG={
+  // CLIMA
   temperature:{cat:'Clima',label:'Temperatura',unit:'°C',color:'#E8593C',api:'openmeteo',param:'temperature_2m'},
+  apparent_temp:{cat:'Clima',label:'Sensación térmica',unit:'°C',color:'#D04830',api:'openmeteo',param:'apparent_temperature'},
   humidity:{cat:'Clima',label:'Humedad',unit:'%',color:'#7B93DB',api:'openmeteo',param:'relative_humidity_2m'},
+  dewpoint:{cat:'Clima',label:'Punto de rocío',unit:'°C',color:'#6A82C4',api:'openmeteo',param:'dew_point_2m'},
   wind_speed:{cat:'Clima',label:'Viento vel.',unit:'km/h',color:'#5DCAA5',api:'openmeteo',param:'wind_speed_10m'},
   wind_dir:{cat:'Clima',label:'Viento dir.',unit:'°',color:'#4AA88D',api:'openmeteo',param:'wind_direction_10m'},
+  wind_gusts:{cat:'Clima',label:'Ráfagas',unit:'km/h',color:'#3D9278',api:'openmeteo',param:'wind_gusts_10m'},
   pressure:{cat:'Clima',label:'Presión',unit:'hPa',color:'#8B7EC8',api:'openmeteo',param:'surface_pressure'},
-  uv_index:{cat:'Clima',label:'Índice UV',unit:'',color:'#F2A623',api:'openmeteo',param:'uv_index'},
   cloud_cover:{cat:'Clima',label:'Nubosidad',unit:'%',color:'#9A9790',api:'openmeteo',param:'cloud_cover'},
   precip:{cat:'Clima',label:'Precipitación',unit:'mm',color:'#4A90D9',api:'openmeteo',param:'precipitation'},
+  snowfall:{cat:'Clima',label:'Nevada',unit:'cm',color:'#D0E4F0',api:'openmeteo',param:'snowfall'},
+  // RADIACIÓN
+  uv_index:{cat:'Radiación',label:'Índice UV',unit:'',color:'#F2A623',api:'openmeteo',param:'uv_index'},
+  solar_rad:{cat:'Radiación',label:'Radiación solar',unit:'W/m²',color:'#FCDE5A',api:'openmeteo',param:'direct_radiation'},
+  diffuse_rad:{cat:'Radiación',label:'Rad. difusa',unit:'W/m²',color:'#EFC94C',api:'openmeteo',param:'diffuse_radiation'},
+  // SUELO
+  soil_temp:{cat:'Suelo',label:'Temp. suelo 0cm',unit:'°C',color:'#A0522D',api:'openmeteo',param:'soil_temperature_0cm'},
+  soil_moisture:{cat:'Suelo',label:'Humedad suelo',unit:'m³/m³',color:'#8B6914',api:'openmeteo',param:'soil_moisture_0_to_1cm'},
+  // OCÉANO
   wave_height:{cat:'Océano',label:'Altura olas',unit:'m',color:'#2E86AB',api:'openmeteo_marine',param:'wave_height'},
   wave_period:{cat:'Océano',label:'Período olas',unit:'s',color:'#3A9FBF',api:'openmeteo_marine',param:'wave_period'},
+  // GEOLOGÍA
   earthquakes:{cat:'Geología',label:'Sismos mag.',unit:'M',color:'#D4533E',api:'usgs_eq',param:'mag'},
   eq_depth:{cat:'Geología',label:'Sismos prof.',unit:'km',color:'#B5412E',api:'usgs_eq',param:'depth'},
+  // SOLAR / ESPACIO
   solar_wind:{cat:'Solar',label:'Viento solar',unit:'km/s',color:'#FCDE5A',api:'noaa_sw',param:'speed'},
   solar_density:{cat:'Solar',label:'Densidad solar',unit:'p/cm³',color:'#EFC94C',api:'noaa_sw',param:'density'},
   solar_bz:{cat:'Solar',label:'Campo Bz',unit:'nT',color:'#DFB317',api:'noaa_sw_mag',param:'bz'},
+  // ASTROS
   moon_phase:{cat:'Astros',label:'Fase lunar',unit:'°',color:'#C8BFE7',api:'astro',param:'moon_phase'},
+  moon_altitude:{cat:'Astros',label:'Altitud lunar',unit:'°',color:'#A89DCF',api:'astro',param:'moon_altitude'},
   sun_altitude:{cat:'Astros',label:'Altitud solar',unit:'°',color:'#FFB347',api:'astro',param:'sun_altitude'},
+  day_length:{cat:'Astros',label:'Duración del día',unit:'h',color:'#FFD700',api:'astro',param:'day_length'},
+  earth_sun_dist:{cat:'Astros',label:'Distancia Tierra-Sol',unit:'AU',color:'#FF8C00',api:'astro',param:'earth_sun_dist'},
+  // RÍOS
   streamflow:{cat:'Ríos',label:'Caudal USGS',unit:'ft³/s',color:'#3CAEA3',api:'usgs_water',param:'streamflow'},
 };
 
@@ -339,10 +380,10 @@ function renderSlots(){
   S.slots.forEach((slot,idx)=>{
     const div=document.createElement('div');div.className='slot';
     div.style.borderLeft=`2px solid ${slot.color}`;
-    if(S.slots.length>1){const rm=document.createElement('span');rm.className='slot-remove';rm.textContent='✕';rm.addEventListener('click',()=>{S.slots=S.slots.filter(s=>s.id!==slot.id);renderSlots();renderMappings()});div.appendChild(rm)}
+    if(S.slots.length>1){const rm=document.createElement('span');rm.className='slot-remove';rm.textContent='✕';rm.addEventListener('click',()=>{if(!confirm('¿Borrar este slot?'))return;S.slots=S.slots.filter(s=>s.id!==slot.id);renderSlots();renderMappings()});div.appendChild(rm)}
     // Source select
     const hdr=document.createElement('div');hdr.style.cssText='display:flex;align-items:center;gap:3px;margin-bottom:3px';
-    hdr.innerHTML=`<span style="font-size:8px;color:var(--text4);font-weight:600;width:10px">${idx+1}</span>`;
+    hdr.innerHTML=`<span style="font-size:10px;color:var(--text4);font-weight:600;width:10px">${idx+1}</span>`;
     const sel=document.createElement('select');sel.style.cssText='flex:1;font-size:9px;padding:2px 3px';
     let lastCat='';
     Object.entries(CATALOG).forEach(([key,src])=>{
@@ -356,7 +397,7 @@ function renderSlots(){
 
     // Time multiplier
     const tmw=document.createElement('div');
-    tmw.innerHTML='<span style="font-size:7px;color:var(--text3)">Time ×</span>';
+    tmw.innerHTML='<span style="font-size:9px;color:var(--text3)">Time ×</span>';
     const tmg=document.createElement('div');tmg.className='tm-grid';
     TIME_MULTS.forEach(mul=>{
       const b=document.createElement('button');b.className=`btn-sm tm-btn${slot.timeMult===mul?' active':''}`;
@@ -384,10 +425,10 @@ function renderSlots(){
       });
       if(slot.loopMode==='bpm'||slot.loopMode==='quant'){
         const bi=document.createElement('input');bi.type='number';bi.min=1;bi.max=128;bi.value=slot.loopBeats;
-        bi.style.cssText='width:28px;font-size:8px;text-align:center';
+        bi.style.cssText='width:28px;font-size:10px;text-align:center';
         bi.addEventListener('change',e=>{slot.loopBeats=Number(e.target.value)});
         lr.appendChild(bi);
-        lr.insertAdjacentHTML('beforeend','<span style="font-size:7px;color:var(--text3)">beats</span>');
+        lr.insertAdjacentHTML('beforeend','<span style="font-size:9px;color:var(--text3)">beats</span>');
       }
     }
     div.appendChild(lr);
@@ -412,12 +453,21 @@ async function fetchAll(){
   const omP=[],marP=[];
   S.slots.forEach(s=>{const c=CATALOG[s.source];if(c.api==='openmeteo')omP.push({slot:s,param:c.param});if(c.api==='openmeteo_marine')marP.push({slot:s,param:c.param})});
   try{
-    if(omP.length){const ps=[...new Set(omP.map(p=>p.param))];const j=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${S.lat}&longitude=${S.lon}&hourly=${ps.join(',')}&start_date=${start}&end_date=${end}&timezone=auto`)).json();if(j.error)throw new Error(j.reason);omP.forEach(({slot,param})=>{slot.data=j.hourly.time.map((t,i)=>({time:t,value:j.hourly[param]?.[i]??null}));autoRange(slot)})}
+    // Detect if dates are historical (more than 5 days ago) → use archive API
+    const daysAgo=Math.floor((new Date()-new Date(start))/(864e5));
+    const omBase=daysAgo>5?'https://archive-api.open-meteo.com/v1/archive':'https://api.open-meteo.com/v1/forecast';
+    if(omP.length){const ps=[...new Set(omP.map(p=>p.param))];const j=await(await fetch(`${omBase}?latitude=${S.lat}&longitude=${S.lon}&hourly=${ps.join(',')}&start_date=${start}&end_date=${end}&timezone=auto`)).json();if(j.error)throw new Error(j.reason);omP.forEach(({slot,param})=>{slot.data=j.hourly.time.map((t,i)=>({time:t,value:j.hourly[param]?.[i]??null}));autoRange(slot)})}
     if(marP.length){const ps=[...new Set(marP.map(p=>p.param))];try{const j=await(await fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${S.lat}&longitude=${S.lon}&hourly=${ps.join(',')}&start_date=${start}&end_date=${end}&timezone=auto`)).json();if(!j.error)marP.forEach(({slot,param})=>{slot.data=j.hourly.time.map((t,i)=>({time:t,value:j.hourly[param]?.[i]??null}));autoRange(slot)})}catch{}}
     for(const sl of S.slots.filter(s=>CATALOG[s.source].api==='usgs_eq')){const p=CATALOG[sl.source].param;const j=await(await fetch(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${start}&endtime=${end}&orderby=time`)).json();sl.data=j.features.sort((a,b)=>a.properties.time-b.properties.time).map(f=>({time:new Date(f.properties.time).toISOString(),value:p==='mag'?f.properties.mag:f.geometry.coordinates[2]}));autoRange(sl)}
     for(const sl of S.slots.filter(s=>CATALOG[s.source].api==='noaa_sw')){const p=CATALOG[sl.source].param;const j=await(await fetch('https://services.swpc.noaa.gov/products/solar-wind/plasma-7-day.json')).json();const pi=p==='speed'?1:2;sl.data=j.slice(1).map(r=>({time:r[0],value:r[pi]!==null?parseFloat(r[pi]):null})).filter(d=>d.value!==null&&!isNaN(d.value));const sd=new Date(start),ed=new Date(end);ed.setDate(ed.getDate()+1);sl.data=sl.data.filter(d=>{const t=new Date(d.time);return t>=sd&&t<=ed});autoRange(sl)}
     for(const sl of S.slots.filter(s=>CATALOG[s.source].api==='noaa_sw_mag')){const j=await(await fetch('https://services.swpc.noaa.gov/products/solar-wind/mag-7-day.json')).json();sl.data=j.slice(1).map(r=>({time:r[0],value:r[3]!==null?parseFloat(r[3]):null})).filter(d=>d.value!==null&&!isNaN(d.value));const sd=new Date(start),ed=new Date(end);ed.setDate(ed.getDate()+1);sl.data=sl.data.filter(d=>{const t=new Date(d.time);return t>=sd&&t<=ed});autoRange(sl)}
-    for(const sl of S.slots.filter(s=>CATALOG[s.source].api==='astro')){const p=CATALOG[sl.source].param;const sd=new Date(start+'T00:00:00'),ed=new Date(end+'T23:59:59');const pts=[];for(let t=new Date(sd);t<=ed;t.setHours(t.getHours()+1)){pts.push({time:t.toISOString(),value:p==='moon_phase'?moonPhase(t):sunAlt(t,S.lat,S.lon)})}sl.data=pts;autoRange(sl)}
+    for(const sl of S.slots.filter(s=>CATALOG[s.source].api==='astro')){const p=CATALOG[sl.source].param;const sd=new Date(start+'T00:00:00'),ed=new Date(end+'T23:59:59');const pts=[];for(let t=new Date(sd);t<=ed;t.setHours(t.getHours()+1)){let v=0;
+      if(p==='moon_phase')v=moonPhase(t);
+      else if(p==='sun_altitude')v=sunAlt(t,S.lat,S.lon);
+      else if(p==='moon_altitude')v=moonAlt(t,S.lat,S.lon);
+      else if(p==='day_length')v=dayLen(t,S.lat);
+      else if(p==='earth_sun_dist')v=earthSunDist(t);
+      pts.push({time:t.toISOString(),value:v})}sl.data=pts;autoRange(sl)}
     for(const sl of S.slots.filter(s=>CATALOG[s.source].api==='usgs_water')){try{const j=await(await fetch(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=09380000&startDT=${start}&endDT=${end}&parameterCd=00060&siteStatus=active`)).json();const ts=j.value?.timeSeries?.[0]?.values?.[0]?.value||[];sl.data=ts.map(v=>({time:v.dateTime,value:parseFloat(v.value)})).filter(d=>!isNaN(d.value));autoRange(sl)}catch{sl.data=[]}}
 
     S.slots.forEach(sl=>sl.playhead=0);S.globalTick=0;S.playing=false;clearInterval(S.playInterval);
@@ -435,6 +485,32 @@ function showErr(m){const b=$('#error-box');b.style.display='block';b.className=
 function hideErr(){$('#error-box').style.display='none'}
 function moonPhase(d){const k=new Date('2000-01-06T18:14:00Z');return Math.round(((((d-k)/(1000*60*60*24))%29.53+29.53)%29.53)/29.53*3600)/10}
 function sunAlt(d,lat,lon){const J=Math.floor((d-new Date(d.getFullYear(),0,0))/(864e5));const hr=d.getUTCHours()+d.getUTCMinutes()/60+lon/15;const dec=23.45*Math.sin(2*Math.PI*(284+J)/365);const ha=(hr-12)*15;const lr=lat*Math.PI/180,dr=dec*Math.PI/180,hr2=ha*Math.PI/180;return Math.round(Math.asin(Math.sin(lr)*Math.sin(dr)+Math.cos(lr)*Math.cos(dr)*Math.cos(hr2))*1800/Math.PI)/10}
+function moonAlt(d,lat,lon){
+  // Simplified lunar altitude (approximate)
+  const J=Math.floor((d-new Date(d.getFullYear(),0,0))/(864e5));
+  const hr=d.getUTCHours()+d.getUTCMinutes()/60+lon/15;
+  const mp=moonPhase(d)/360;// 0-1 cycle
+  const lunarRA=(mp*360+J*13.176)%360;// moon moves ~13°/day
+  const lunarDec=23.45*Math.sin((lunarRA+90)*Math.PI/180)*0.9;// rough declination
+  const ha=((hr*15)-lunarRA+360)%360;
+  const haR=(ha>180?ha-360:ha)*Math.PI/180;
+  const lr=lat*Math.PI/180,dr=lunarDec*Math.PI/180;
+  return Math.round(Math.asin(Math.sin(lr)*Math.sin(dr)+Math.cos(lr)*Math.cos(dr)*Math.cos(haR))*1800/Math.PI)/10;
+}
+function dayLen(d,lat){
+  const J=Math.floor((d-new Date(d.getFullYear(),0,0))/(864e5));
+  const dec=23.45*Math.sin(2*Math.PI*(284+J)/365);
+  const lr=lat*Math.PI/180,dr=dec*Math.PI/180;
+  const cosHA=-Math.tan(lr)*Math.tan(dr);
+  if(cosHA<-1)return 24;if(cosHA>1)return 0;
+  return Math.round(2*Math.acos(cosHA)*12/Math.PI*100)/100;
+}
+function earthSunDist(d){
+  // Earth-Sun distance in AU (simplified elliptical orbit)
+  const J=Math.floor((d-new Date(d.getFullYear(),0,0))/(864e5));
+  const M=(357.5291+0.98560028*(J-1))*Math.PI/180;
+  return Math.round((1.00014-0.01671*Math.cos(M)-0.00014*Math.cos(2*M))*10000)/10000;
+}
 
 // ═══════════════════════════════════════════
 // CHARTS
@@ -454,7 +530,7 @@ function renderCharts(){
       <div style="display:flex;align-items:center;gap:2px"><span style="color:var(--text3)" id="sv-${slot.id}">—</span>
       <button class="btn-sm zoom-btn" data-slot="${slot.id}" data-dir="in">+</button>
       <button class="btn-sm zoom-btn" data-slot="${slot.id}" data-dir="out">−</button>
-      <button class="btn-sm zoom-btn" data-slot="${slot.id}" data-dir="fit" style="font-size:6px">fit</button></div>`;
+      <button class="btn-sm zoom-btn" data-slot="${slot.id}" data-dir="fit" style="font-size:8px">fit</button></div>`;
     wrap.appendChild(hdr);
     const cw=document.createElement('div');cw.className='chart-canvas-wrap';
     const cv=document.createElement('canvas');cv.id=`cc-${slot.id}`;
@@ -616,42 +692,42 @@ function renderMappings(){
     sl.mappings.forEach(m=>{
       const card=document.createElement('div');card.className=`map-card${m.enabled?'':' disabled'}`;
       const r1=document.createElement('div');r1.style.cssText='display:flex;align-items:center;gap:3px;margin-bottom:2px';
-      const tog=document.createElement('span');tog.style.cssText=`cursor:pointer;font-size:8px;color:${m.enabled?sl.color:'var(--text4)'}`;tog.textContent=m.enabled?'●':'○';
+      const tog=document.createElement('span');tog.style.cssText=`cursor:pointer;font-size:10px;color:${m.enabled?sl.color:'var(--text4)'}`;tog.textContent=m.enabled?'●':'○';
       tog.addEventListener('click',()=>{m.enabled=!m.enabled;renderMappings()});r1.appendChild(tog);
-      r1.insertAdjacentHTML('beforeend','<span style="font-size:8px;color:var(--text2)">CC</span>');
-      const ccI=document.createElement('input');ccI.type='number';ccI.min=0;ccI.max=127;ccI.value=m.cc;ccI.style.cssText='width:28px;font-size:8px;text-align:center';ccI.addEventListener('change',e=>{m.cc=Number(e.target.value)});r1.appendChild(ccI);
-      r1.insertAdjacentHTML('beforeend','<span style="font-size:8px;color:var(--text2)">Ch</span>');
-      const chI=document.createElement('input');chI.type='number';chI.min=1;chI.max=16;chI.value=m.channel;chI.style.cssText='width:24px;font-size:8px;text-align:center';chI.addEventListener('change',e=>{m.channel=Number(e.target.value)});r1.appendChild(chI);
-      r1.insertAdjacentHTML('beforeend','<span style="font-size:7px;color:var(--text3);margin-left:2px">Out</span>');
-      const oMin=document.createElement('input');oMin.type='number';oMin.min=0;oMin.max=127;oMin.value=m.outMin;oMin.style.cssText='width:24px;font-size:8px;text-align:center';oMin.addEventListener('change',e=>{m.outMin=Number(e.target.value)});r1.appendChild(oMin);
-      const oMax=document.createElement('input');oMax.type='number';oMax.min=0;oMax.max=127;oMax.value=m.outMax;oMax.style.cssText='width:24px;font-size:8px;text-align:center';oMax.addEventListener('change',e=>{m.outMax=Number(e.target.value)});r1.appendChild(oMax);
-      if(sl.mappings.length>1){const rm=document.createElement('span');rm.style.cssText='font-size:7px;color:var(--danger);cursor:pointer;margin-left:auto;padding:0 2px';rm.textContent='✕';rm.addEventListener('click',()=>{sl.mappings=sl.mappings.filter(x=>x.id!==m.id);renderMappings()});r1.appendChild(rm)}
+      r1.insertAdjacentHTML('beforeend','<span style="font-size:10px;color:var(--text2)">CC</span>');
+      const ccI=document.createElement('input');ccI.type='number';ccI.min=0;ccI.max=127;ccI.value=m.cc;ccI.style.cssText='width:28px;font-size:10px;text-align:center';ccI.addEventListener('change',e=>{m.cc=Number(e.target.value)});r1.appendChild(ccI);
+      r1.insertAdjacentHTML('beforeend','<span style="font-size:10px;color:var(--text2)">Ch</span>');
+      const chI=document.createElement('input');chI.type='number';chI.min=1;chI.max=16;chI.value=m.channel;chI.style.cssText='width:24px;font-size:10px;text-align:center';chI.addEventListener('change',e=>{m.channel=Number(e.target.value)});r1.appendChild(chI);
+      r1.insertAdjacentHTML('beforeend','<span style="font-size:9px;color:var(--text3);margin-left:2px">Out</span>');
+      const oMin=document.createElement('input');oMin.type='number';oMin.min=0;oMin.max=127;oMin.value=m.outMin;oMin.style.cssText='width:24px;font-size:10px;text-align:center';oMin.addEventListener('change',e=>{m.outMin=Number(e.target.value)});r1.appendChild(oMin);
+      const oMax=document.createElement('input');oMax.type='number';oMax.min=0;oMax.max=127;oMax.value=m.outMax;oMax.style.cssText='width:24px;font-size:10px;text-align:center';oMax.addEventListener('change',e=>{m.outMax=Number(e.target.value)});r1.appendChild(oMax);
+      if(sl.mappings.length>1){const rm=document.createElement('span');rm.style.cssText='font-size:9px;color:var(--danger);cursor:pointer;margin-left:auto;padding:0 2px';rm.textContent='✕';rm.addEventListener('click',()=>{if(!confirm('¿Borrar este mapeo?'))return;sl.mappings=sl.mappings.filter(x=>x.id!==m.id);renderMappings()});r1.appendChild(rm)}
       card.appendChild(r1);
       // Time multiplier per mapping
       const tmw=document.createElement('div');tmw.style.marginBottom='2px';
-      tmw.innerHTML='<span style="font-size:7px;color:var(--text3)">Time ×</span>';
+      tmw.innerHTML='<span style="font-size:9px;color:var(--text3)">Time ×</span>';
       const tmg=document.createElement('div');tmg.className='tm-grid';
       TIME_MULTS.forEach(mul=>{const b=document.createElement('button');b.className=`btn-sm tm-btn${m.timeMult===mul?' active':''}`;b.textContent='×'+mul;if(m.timeMult===mul){b.style.color=sl.color;b.style.borderColor=sl.color+'60'}b.addEventListener('click',()=>{m.timeMult=mul;renderMappings()});tmg.appendChild(b)});
       tmw.appendChild(tmg);card.appendChild(tmw);
       // Loop range
       const lrw=document.createElement('div');lrw.style.cssText='display:flex;align-items:center;gap:3px;margin:2px 0';
-      lrw.innerHTML='<span style="font-size:7px;color:var(--text3);width:24px">Range</span>';
+      lrw.innerHTML='<span style="font-size:9px;color:var(--text3);width:24px">Range</span>';
       const lsI=document.createElement('input');lsI.type='number';lsI.min=0;lsI.max=99;lsI.value=m.loopStart;
-      lsI.style.cssText='width:28px;font-size:8px;text-align:center';
+      lsI.style.cssText='width:28px;font-size:10px;text-align:center';
       lsI.addEventListener('change',e=>{m.loopStart=Math.max(0,Math.min(99,Number(e.target.value)));if(m.loopStart>=m.loopEnd)m.loopEnd=m.loopStart+1;renderMappings();renderCharts()});
       lrw.appendChild(lsI);
-      lrw.insertAdjacentHTML('beforeend','<span style="font-size:7px;color:var(--text4)">%—</span>');
+      lrw.insertAdjacentHTML('beforeend','<span style="font-size:9px;color:var(--text4)">%—</span>');
       const leI=document.createElement('input');leI.type='number';leI.min=1;leI.max=100;leI.value=m.loopEnd;
-      leI.style.cssText='width:28px;font-size:8px;text-align:center';
+      leI.style.cssText='width:28px;font-size:10px;text-align:center';
       leI.addEventListener('change',e=>{m.loopEnd=Math.max(1,Math.min(100,Number(e.target.value)));if(m.loopEnd<=m.loopStart)m.loopStart=m.loopEnd-1;renderMappings();renderCharts()});
       lrw.appendChild(leI);
-      lrw.insertAdjacentHTML('beforeend','<span style="font-size:7px;color:var(--text4)">%</span>');
+      lrw.insertAdjacentHTML('beforeend','<span style="font-size:9px;color:var(--text4)">%</span>');
       card.appendChild(lrw);
       // Slew
       const slw=document.createElement('div');slw.className='slew-wrap';
-      slw.innerHTML='<span style="font-size:7px;color:var(--text3);width:20px">Slew</span>';
+      slw.innerHTML='<span style="font-size:9px;color:var(--text3);width:20px">Slew</span>';
       const slR=document.createElement('input');slR.type='range';slR.min=0;slR.max=2000;slR.step=10;slR.value=m.slew;
-      const slV=document.createElement('span');slV.style.cssText='font-size:7px;color:var(--text3);min-width:24px;text-align:right';slV.textContent=m.slew===0?'off':m.slew+'ms';
+      const slV=document.createElement('span');slV.style.cssText='font-size:9px;color:var(--text3);min-width:24px;text-align:right';slV.textContent=m.slew===0?'off':m.slew+'ms';
       slR.addEventListener('input',e=>{m.slew=Number(e.target.value);slV.textContent=m.slew===0?'off':m.slew+'ms'});
       slw.appendChild(slR);slw.appendChild(slV);card.appendChild(slw);
       sec.appendChild(card);
@@ -681,6 +757,89 @@ function createFloat32Wav(samples){
 }
 
 function triggerDL(blob,fn){const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u)}
+
+// ═══════════════════════════════════════════
+// PRESETS (localStorage)
+// ═══════════════════════════════════════════
+function serializePreset(){
+  return {
+    city:S.city,lat:S.lat,lon:S.lon,
+    playbackSpeed:S.playbackSpeed,
+    followExt:S.followExt,
+    dateStart:$('#date-start').value,
+    dateEnd:$('#date-end').value,
+    slots:S.slots.map(sl=>({
+      source:sl.source,
+      timeMult:sl.timeMult,
+      loop:sl.loop,loopMode:sl.loopMode,loopBeats:sl.loopBeats,
+      viewMin:sl.viewMin,viewMax:sl.viewMax,
+      mappings:sl.mappings.map(m=>({
+        cc:m.cc,channel:m.channel,outMin:m.outMin,outMax:m.outMax,
+        enabled:m.enabled,slew:m.slew,timeMult:m.timeMult,
+        loopStart:m.loopStart,loopEnd:m.loopEnd
+      }))
+    }))
+  };
+}
+
+function loadPreset(preset){
+  S.city=preset.city||'Quito';S.lat=preset.lat||-0.18;S.lon=preset.lon||-78.47;
+  S.playbackSpeed=preset.playbackSpeed||4;
+  S.followExt=preset.followExt||false;
+  $('#follow-btn').classList.toggle('active',S.followExt);
+  $('#city-input').value=S.city.split(',')[0];
+  $('#location-info').textContent=`${S.city} (${S.lat.toFixed(2)}, ${S.lon.toFixed(2)})`;
+  if(preset.dateStart)$('#date-start').value=preset.dateStart;
+  if(preset.dateEnd)$('#date-end').value=preset.dateEnd;
+  $$('.speed-btn').forEach(b=>{b.classList.toggle('active',parseFloat(b.textContent)===S.playbackSpeed)});
+
+  S.slots=preset.slots.map((ps,i)=>({
+    id:S.nextId++,
+    source:ps.source,
+    color:SLOT_COLORS[i%SLOT_COLORS.length],
+    data:null,viewMin:ps.viewMin,viewMax:ps.viewMax,
+    timeMult:ps.timeMult||1,
+    loop:ps.loop||false,loopMode:ps.loopMode||'free',loopBeats:ps.loopBeats||4,
+    playhead:0,
+    mappings:ps.mappings.map(pm=>({
+      id:S.nextId++,cc:pm.cc,channel:pm.channel,outMin:pm.outMin,outMax:pm.outMax,
+      enabled:pm.enabled,slew:pm.slew||0,timeMult:pm.timeMult||1,
+      loopStart:pm.loopStart||0,loopEnd:pm.loopEnd||100,
+      _sv:null,_ph:0
+    }))
+  }));
+  renderSlots();renderMappings();
+}
+
+function getPresets(){try{return JSON.parse(localStorage.getItem('naturemidi_presets')||'[]')}catch{return[]}}
+function savePresets(list){localStorage.setItem('naturemidi_presets',JSON.stringify(list))}
+
+function renderPresets(){
+  const list=getPresets(),area=$('#presets-list');area.innerHTML='';
+  list.forEach((p,i)=>{
+    const div=document.createElement('div');div.className='preset-item';
+    const name=document.createElement('span');name.textContent=p.name;name.style.cssText='flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
+    const info=document.createElement('span');info.style.cssText='font-size:10px;color:var(--text4)';
+    info.textContent=`${p.data.slots.length} slots`;
+    const del=document.createElement('span');del.className='preset-del';del.textContent='✕';
+    del.addEventListener('click',e=>{e.stopPropagation();if(!confirm(`¿Borrar preset "${p.name}"?`))return;const l=getPresets();l.splice(i,1);savePresets(l);renderPresets()});
+    div.addEventListener('click',()=>{loadPreset(p.data);renderPresets()});
+    div.appendChild(name);div.appendChild(info);div.appendChild(del);
+    area.appendChild(div);
+  });
+}
+
+$('#save-preset-btn').addEventListener('click',()=>{
+  const name=$('#preset-name').value.trim();
+  if(!name){$('#preset-name').style.borderColor='var(--danger)';setTimeout(()=>$('#preset-name').style.borderColor='',1000);return}
+  const list=getPresets();
+  list.push({name,date:new Date().toISOString(),data:serializePreset()});
+  savePresets(list);
+  $('#preset-name').value='';
+  renderPresets();
+});
+
+renderPresets();
 
 function updateExportUI(){
   const sel=$('#export-slot-select');sel.innerHTML='';
@@ -734,5 +893,6 @@ $('#export-json-btn').addEventListener('click',()=>{
 // ═══════════════════════════════════════════
 renderSlots();renderMappings();
 </script>
+
 </body>
 </html>
